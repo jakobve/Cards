@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "76778101877",
+    "firebase_url": "https://jakobvettercards-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "jakobvettercards",
+    "storage_bucket": "jakobvettercards.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76778101877:android:d46ab435cb864c1672ec3c",
+        "android_client_info": {
+          "package_name": "es.uam.eps.dadm.cards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76778101877-hbgtql2isiht3mg5ec6rieq9es3gik53.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "es.uam.eps.dadm.cards",
+            "certificate_hash": "1ae0b917fec2c137466102acfcd16db6f1bbf747"
+          }
+        },
+        {
+          "client_id": "76778101877-aretd7olupq7b73me069bodcu974els5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD91zd9SdtoFexEc8td0Oqqmrokqx1hENE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76778101877-aretd7olupq7b73me069bodcu974els5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

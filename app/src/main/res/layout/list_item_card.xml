@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="card"
+            type="es.uam.eps.dadm.cards.Card" />
+    </data>
+    
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/mtrl_card_spacing"
+        android:layout_marginTop="@dimen/mtrl_card_spacing"
+        android:layout_marginRight="@dimen/mtrl_card_spacing"
+        app:cardBackgroundColor="@color/white"
+        tools:ignore="PrivateResource">
+
+        <LinearLayout
+            android:id="@+id/card_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingTop="10dp"
+                android:paddingRight="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/list_item_question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:text="@{card.question}"
+                    android:layout_marginBottom="8dp"
+                    tools:text="list_item_question"
+                    tools:ignore="RelativeOverlap" />
+
+                <TextView
+                    android:id="@+id/list_item_answer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/list_item_question"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:text="@{card.answer}"
+                    tools:text="list_item_answer"/>
+
+
+
+                <ImageButton
+                    android:id="@+id/info_card_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@id/list_item_question"
+                    android:background="@color/white"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:src="@drawable/ic_baseline_info_24"
+                    android:contentDescription="@string/edit_deck_button"/>
+
+                <TextView
+                    android:id="@+id/list_item_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/info_card_button"
+                    android:layout_alignBaseline="@id/list_item_answer"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:text="@{card.date.substring(0, 10)}"
+                    tools:text="list_item_date"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/card_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="10dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="10dp"
+                android:visibility="@{card.expanded ? View.VISIBLE : View.GONE}">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/details_quality_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:text="@string/card_details_quality"
+                        tools:text="Quality: "/>
+
+                    <TextView
+                        android:id="@+id/details_quality_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:text="@{@string/card_details_easiness(card.easiness)}"
+                        tools:text="X"
+                        tools:ignore="RelativeOverlap" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/details_repetitions_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:text="@string/card_details_repetitions"
+                        tools:text="Repetitions: "/>
+
+                    <TextView
+                        android:id="@+id/details_repetitions_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:text="@{Integer.toString(card.repetitions)}"
+                        tools:text="X"
+                        tools:ignore="RelativeOverlap" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/details_practice_date_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:text="@string/card_details_next_practice_date"
+                        tools:text="Next practice date: "/>
+
+                    <TextView
+                        android:id="@+id/details_practice_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:text="@{card.nextPracticeDate.substring(0, 10)}"
+                        tools:text="X"
+                        tools:ignore="RelativeOverlap" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
+
+

@@ -1,0 +1,158 @@
+<resources>
+    <string name="app_name">Cards</string>
+
+    <string name="question_text">Question</string>
+    <string name="answer_text">Answer</string>
+
+    <string name="easy_button_title">Easy</string>
+    <string name="doubt_button_title">Doubt</string>
+    <string name="difficult_button_title">Difficult</string>
+
+    <string name="due_cards_info_text_view_message">Number of remaining cards</string>
+    <string name="due_cards_format">%d cards left</string>
+
+    <string name="subtitle_text">Tap to study</string>
+
+    <string name="no_more_cards_toast_message">There are no more cards left</string>
+
+    <string name="review_cards_button">Review cards</string>
+
+    <string name="edit_question_placeholder">Write question text</string>
+    <string name="edit_answer_placeholder">Write answer text</string>
+
+    <string name="accept_button">Accept</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="delete_button">Delete</string>
+
+    <string name="new_card_fab_description">Create new card</string>
+
+    <string name="decks_nav_menu_title">Decks</string>
+    <string name="study_nav_menu_title">Review cards</string>
+    <string name="statistics_nav_menu_title">Statistics</string>
+    <string name="about_nav_menu_title">About</string>
+
+    <string name="about_app_verion">v 0.0.1</string>
+
+    <string name="about_description_heading">Description</string>
+    <string name="about_description">With this application you can review flashcards</string>
+
+    <string name="about_author_heading">Author</string>
+    <string name="about_author">Jakob Vetter @UAM.EPS</string>
+
+    <string name="new_deck_fab_description">Create new deck</string>
+
+    <string name="deck_edit_name">Name of deck</string>
+    <string name="deck_edit_name_placeholder">Write deck name</string>
+    <string name="edit_deck_button">Edit deck</string>
+
+    <string name="general_statistics_title">General Statistics</string>
+    <string name="statistics_number_of_decks_text">Number of decks:</string>
+    <string name="specifies_the_number_of_decks_you_have_saved_in_the_app">Specifies the number of decks you have saved in the app</string>
+    <string name="statistics_number_of_cards_text">Number of cards:</string>
+    <string name="statistics_number_of_cards_description">Specifies the number of cards you have saved in the app</string>
+    <string name="statistics_user_statistics_title">User Statistics</string>
+    <string name="statistics_umber_of_reviews_today">Number of reviews today:</string>
+    <string name="statistics_number_of_reviews_today_description">Number of cards you have reviewed today</string>
+    <string name="statistics_average_quality_of_cards_text">Average quality of cards:</string>
+    <string name="number_of_cards_you_have_reviewed">Number of cards you have reviewed</string>
+    <string name="statistics_number_of_good_cards_text">Number of good cards:</string>
+    <string name="statistics_number_of_good_cards_description">
+        Number of good cards in all your decks
+    </string>
+    <string name="statistics_number_of_doubt_cards_text">Number of doubt cards:</string>
+    <string name="statistics_number_of_doubt_cards_description">
+        Number of doubt cards in all your decks
+    </string>
+    <string name="statistics_number_of_bad_cards_text">Number of bad cards:</string>
+    <string name="statistics_number_of_bad_cards_description">
+        Number of bad cards in all your decks
+    </string>
+    <string name="statistics_forecast_title">Forecast</string>
+
+    <string name="card_details_next_practice_date">Next practice date:</string>
+    <string name="card_details_repetitions">Repetitions:</string>
+    <string name="card_details_quality">Easiness:</string>
+    <string name="statistics_upcoming_next_week_desc">
+        Number of cards you still have to review this week
+    </string>
+    <string name="statistics_upcoming_next_weeks_desc">
+        Number of cards you\'ll review in the next weeks
+    </string>
+    <string name="tutorial_title">Tutorial</string>
+    <string name="tutorial_subheading">
+        In this tutorial we will explain you the different functionalities of the application.
+    </string>
+    <string name="tutorial_decks_screen">Decks Screen</string>
+    <string name="tutorial_deck_screen_description">
+        On this screen you can add, review, remove and
+        edit card decks. By clicking on the respective card deck you can review all the cards in the
+        respecitve deck. When clicking on the edit button of the card deck you can edit the name of
+        the deck or delete the deck. You can create a new deck by clicking the add deck button in
+        the lower right corner of the decks screen. After doing so you can enter the name of your
+        new deck and create a new deck or cancel the operation.
+    </string>
+    <string name="tutorial_edit_cards_title">Edit cards</string>
+    <string name="tutorial_edit_cards_description">
+        To edit cards, you have to access the respective
+        deck where a card is stored in. After doing so simply click the card. You can now edit the
+        answer, the question or delete the card. The operation is stored when clicking accept.
+    </string>
+    <string name="tutorial_add_new_cards_title">Add new cards</string>
+    <string name="tutorial_add_new_cards_desc">
+        To add a new card enter the respective deck in which you want to add the new card.
+        After doing so click the add card button in the lower right corner.
+        Then enter the question and the respective answer for a card.
+    </string>
+    <string name="tutorial_review_deck_title">Review deck</string>
+    <string name="tutorial_review_deck_desc">
+        To review the cards of a specific deck select the respective deck. Then tap the start review
+        button located in the lower left corner.
+    </string>
+    <string name="tutorial_card_review_desc">
+        To review random cards, simply enter the random cards section from the navigation menu.
+        In this section all cards will be reviewed where the next repetition date is in the past.
+        You can also review cards of a specific deck, as described above. When reviewing cards the
+        question is first shown on the screen. Then you have to remember it and tap the screen to
+        see the correct answer. After the answer is shown, you have to select how hard it was to
+        remember the correct answer. If it was easy click the easy button. If you were not 100%
+        sure click the doubt button. And if it was wrong click the difficult button. After clicking
+        one of these buttons the next card will be displayed.
+    </string>
+    <string name="tutorial_review_cards_title">Review cards</string>
+    <string name="tutorial_statistics_title">Statistics</string>
+    <string name="tutorial_statistics_desc">
+        In the statistics screen you can find General Statistics, User Statistics and Forecasts
+        about your performance and your cards. In the General Statistics section there is listed
+        the amount of cards and decks stored in the flashcards app. In the User Statistics section
+        there is data about your performance available, i.e. how many good, doubt and difficult
+        cards there in all of your decks. In the Forecast section you can see how many cards you
+        still have to review this week and the upcoming weeks.
+    </string>
+    <string name="statistics_upcoming_next_weeks_text">
+        The cards you have to review in the next weeks
+    </string>
+    <string name="statistics_upcoming_next_week_text">
+        Cards you have to review this week
+    </string>
+
+    <string name="card_details_easiness">%.2f</string>
+    <string name="tutorial_nav_menu_title">Tutorial</string>
+    <string name="generate_test_deck_button">Generate test deck</string>
+    <string name="title_fragment_description">Title Fragment</string>
+    <string name="settings_menu_title">Settings</string>
+    <string name="logout_menu_title">Logout</string>
+
+    <!-- Preference Titles -->
+    <string name="decks_header">Decks</string>
+
+    <!-- Maximum number of cards Preferences -->
+    <string name="max_number_cards">Maximum number of cards</string>
+
+    <!-- Board Preferences -->
+    <string name="board_title">Show board</string>
+    <string name="board_summary_on">Board available</string>
+    <string name="board_summary_off">Board unavailable</string>+
+
+    <!-- Title activity settings -->
+    <string name="title_activity_settings">Settings</string>
+</resources>
