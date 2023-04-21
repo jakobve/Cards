@@ -3,13 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <import type="android.view.View"/>
-        <variable
-            name="deckWithCards"
-            type="es.uam.eps.dadm.cards.DeckWithCards" />
-    </data>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -58,7 +51,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:text="@{viewModel.nDecks.toString()}"
                     tools:text="X"
                     tools:ignore="RelativeOverlap" />
 
@@ -96,7 +88,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="@{viewModel.nCards.toString()}"
                     tools:text="X"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     tools:ignore="RelativeOverlap" />
@@ -142,7 +133,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:text="@{viewModel.nRepetitions.toString()}"
                     tools:text="X"
                     tools:ignore="RelativeOverlap" />
             </RelativeLayout>
@@ -232,7 +222,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:text="@{viewModel.nGoodCards.toString()}"
                     tools:text="X"
                     tools:ignore="RelativeOverlap" />
             </RelativeLayout>
@@ -280,7 +269,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:text="@{viewModel.nDoubtCards.toString()}"
                     tools:text="X"
                     tools:ignore="RelativeOverlap" />
             </RelativeLayout>
@@ -328,7 +316,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:text="@{viewModel.nBadCards.toString()}"
                     tools:text="X"
                     tools:ignore="RelativeOverlap" />
             </RelativeLayout>
@@ -368,7 +355,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:text="@{viewModel.nDueCardsWeek.toString()}"
                     tools:text="X"
                     tools:ignore="RelativeOverlap" />
 
@@ -406,7 +392,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:text="@{viewModel.nDueCardsMoreWeek.toString()}"
                     tools:text="X"
                     tools:ignore="RelativeOverlap" />
 

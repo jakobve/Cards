@@ -15,6 +15,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.google.android.material.snackbar.Snackbar
 import es.uam.eps.dadm.cards.databinding.FragmentStatisticsBinding
 import timber.log.Timber
+import java.time.LocalDateTime
 
 class StatisticsFragment : Fragment() {
 
@@ -26,6 +27,7 @@ class StatisticsFragment : Fragment() {
     private lateinit var decksWithCards: List<DeckWithCards>
     private lateinit var decks: List<Deck>
     private lateinit var cards: List<Card>
+    private var entries: MutableList<PieEntry> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +41,10 @@ class StatisticsFragment : Fragment() {
             false
         )
 
+        // Create the PieChart
+        val pieChart: PieChart = binding.statisticsChart
+
+
         viewModel.decksWithCards.observe(viewLifecycleOwner) {
             decksWithCards = it
             cards = decksWithCards.flatMap { it.cards }
@@ -46,16 +52,43 @@ class StatisticsFragment : Fragment() {
 
             val avgCardQuality = cards.sumOf { it.quality }.div(cards.size)
 
+            binding.generalStatisticsTotalNumberOfDecksNumber.setText(decks.size)
+
+            binding.generalStatisticsTotalNumberOfCardsNumber.setText(cards.size)
+
             binding.userStatisticsAvgCardQualityNumber.text = avgCardQuality.toString()
+
+            // Difficult cards
+            cards.filter { it.quality == 0 }.size.let {
+                PieEntry(it.toFloat(), 0) }?.let { entries.add(it)
+                }
+
+            // Doubt cards
+            cards.filter { it.quality == 3 }.size.let {
+                PieEntry(it.toFloat(), 0) }?.let { entries.add(it)
+                }
+
+            // Good cards
+            cards.filter { it.quality == 5 }.size.let {
+                PieEntry(it.toFloat(), 0) }?.let { entries.add(it)
+                }
+
+            // Repetitions
+            binding.userStatisticsNumberOfReviewsNumber.setText(cards.count { it.answered })
+
+            // Due this week
+            val nDueCardsWeek = cards?.filter {
+                LocalDateTime.parse(it.nextPracticeDate).isBefore(LocalDateTime.now().plusWeeks(1))
+            }
+            binding.upcomingThisWeekNumber.setText(nDueCardsWeek?.size ?: 0)
+
+            // Due more than one week
+            var nDueCardsMoreWeek = cards?.filter {
+                LocalDateTime.parse(it.nextPracticeDate).isAfter(LocalDateTime.now().plusWeeks(1))
+            }
+            binding.upcomingWeeksNumber.setText(nDueCardsMoreWeek?.size ?: 0)
         }
 
-        // Create the PieChart
-        val pieChart: PieChart = binding.statisticsChart
-        val entries: MutableList<PieEntry> = mutableListOf()
-
-        viewModel.nGoodCards.value?.let { PieEntry(it.toFloat(), 0) }?.let { entries.add(it) }
-        viewModel.nDoubtCards.value?.let { PieEntry(it.toFloat(), 0) }?.let { entries.add(it) }
-        viewModel.nBadCards.value?.let { PieEntry(it.toFloat(), 0) }?.let { entries.add(it) }
         //entries.add(PieEntry(viewModel.nDoubtCards.toFloat(), 1))
         //entries.add(PieEntry(viewModel.nBadCards.toFloat(), 2))
 
@@ -97,7 +130,7 @@ class StatisticsFragment : Fragment() {
 
     override fun onStart() {
         Timber.i("On Resume statistics fragment")
-        viewModel.updateLiveData()
+        //viewModel.updateLiveData()
         super.onStart()
     }
 

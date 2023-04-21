@@ -24,7 +24,7 @@ class StatisticsViewModel(application: Application): AndroidViewModel(applicatio
         deckSelected.value = id
     }
 
-     */
+
 
     private val _nDueCardsWeek = MutableLiveData<Int>()
     val nDueCardsWeek: LiveData<Int>
@@ -95,5 +95,7 @@ class StatisticsViewModel(application: Application): AndroidViewModel(applicatio
     private fun dueWeekMore() = cards?.filter {
         LocalDateTime.parse(it.nextPracticeDate).isAfter(LocalDateTime.now().plusWeeks(1))
     }
+
+     */
 
 }

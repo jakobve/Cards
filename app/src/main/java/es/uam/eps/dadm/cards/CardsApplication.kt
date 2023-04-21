@@ -83,6 +83,13 @@ class CardsApplication: Application() {
         }
 
         fun getDecksWithCards(context: Context): LiveData<List<DeckWithCards>> {
+            val decksWithCardsLiveData = MutableLiveData<List<DeckWithCards>>()
+
+            executor.execute {
+                val decksWithCards = cardDatabase?.cardDao.getDecksWithCards()
+                decksWithCardsLiveData.postValue(decksWithCards)
+            }
+
             cardDatabase = initializeDatabase(context)
             return cardDatabase!!.cardDao.getDecksWithCards()
         }
