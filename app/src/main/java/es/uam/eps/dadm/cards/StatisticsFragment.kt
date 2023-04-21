@@ -81,14 +81,13 @@ class StatisticsFragment : Fragment() {
 
             invalidate()
         }
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.cards.observe(viewLifecycleOwner) {
+        viewModel.decksWithCards.observe(viewLifecycleOwner) {
             var message = String()
             it.forEach {
                 message += "The deck named ${it.deck.name} has ${it.cards.size} cards\n" }
