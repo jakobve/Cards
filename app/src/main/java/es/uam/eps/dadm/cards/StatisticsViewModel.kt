@@ -2,14 +2,15 @@ package es.uam.eps.dadm.cards
 
 import android.app.Application
 import androidx.lifecycle.*
-import timber.log.Timber
-import java.time.LocalDateTime
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class StatisticsViewModel(application: Application): AndroidViewModel(application) {
 
     private val context = getApplication<Application>().applicationContext
 
-    var  decksWithCards: LiveData<List<DeckWithCards>> = CardsApplication.getDecksWithCards(context)
+    var decksWithCards: LiveData<List<DeckWithCards>> = CardsApplication.getDecksWithCards(context)
 
     //var cards: List<Card>? = deckWithCards.value.
 
@@ -23,8 +24,6 @@ class StatisticsViewModel(application: Application): AndroidViewModel(applicatio
     fun loadDeckId(id: Long) {
         deckSelected.value = id
     }
-
-
 
     private val _nDueCardsWeek = MutableLiveData<Int>()
     val nDueCardsWeek: LiveData<Int>

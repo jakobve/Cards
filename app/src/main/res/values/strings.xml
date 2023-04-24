@@ -129,10 +129,10 @@
         still have to review this week and the upcoming weeks.
     </string>
     <string name="statistics_upcoming_next_weeks_text">
-        The cards you have to review in the next weeks
+        Cards to review in the next weeks:
     </string>
     <string name="statistics_upcoming_next_week_text">
-        Cards you have to review this week
+        Cards to review this week:
     </string>
 
     <string name="card_details_easiness">%.2f</string>

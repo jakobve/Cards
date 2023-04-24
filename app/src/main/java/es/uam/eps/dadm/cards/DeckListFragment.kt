@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import es.uam.eps.dadm.cards.database.CardDatabase
 import es.uam.eps.dadm.cards.databinding.FragmentDeckListBinding
-import timber.log.Timber
 
 
 class DeckListFragment : Fragment() {
@@ -38,7 +36,7 @@ class DeckListFragment : Fragment() {
         adapter.data = emptyList()
         binding.deckListRecyclerView.adapter = adapter
 
-        deckListViewModel.decks.observe(viewLifecycleOwner) { it ->
+        deckListViewModel.decksWithCards.observe(viewLifecycleOwner) { it ->
             adapter.data = it.map { it.deck }
             adapter.notifyDataSetChanged()
         }

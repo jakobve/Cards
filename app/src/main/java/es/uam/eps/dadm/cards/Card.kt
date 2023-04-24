@@ -84,6 +84,7 @@ open class Card(
         }
 
         nextPracticeDate = currentDate.plusDays(interval).toString()
+        answered = false
     }
 
     fun isDue(date: LocalDateTime): Boolean {

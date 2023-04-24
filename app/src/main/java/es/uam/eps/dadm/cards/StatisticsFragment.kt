@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.google.android.material.snackbar.Snackbar
 import es.uam.eps.dadm.cards.databinding.FragmentStatisticsBinding
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.time.LocalDateTime
 
@@ -43,77 +45,83 @@ class StatisticsFragment : Fragment() {
 
         // Create the PieChart
         val pieChart: PieChart = binding.statisticsChart
+        lifecycleScope.launch {
+            viewModel.decksWithCards.observe(viewLifecycleOwner) { it ->
+                decksWithCards = it
+                Timber.i("Initialize statistics fragment")
+                decks = decksWithCards.map { it.deck }
+                cards = decksWithCards.flatMap { it.cards }
 
+                Timber.i(decks.size.toString())
 
-        viewModel.decksWithCards.observe(viewLifecycleOwner) {
-            decksWithCards = it
-            cards = decksWithCards.flatMap { it.cards }
-            decks = decksWithCards.map { it.deck }
+                val avgCardQuality = cards.sumOf { it.quality }.div(cards.size)
 
-            val avgCardQuality = cards.sumOf { it.quality }.div(cards.size)
+                binding.generalStatisticsTotalNumberOfDecksNumber.setText(decks.size.toString())
 
-            binding.generalStatisticsTotalNumberOfDecksNumber.setText(decks.size)
+                binding.generalStatisticsTotalNumberOfCardsNumber.setText(cards.size.toString())
 
-            binding.generalStatisticsTotalNumberOfCardsNumber.setText(cards.size)
+                binding.userStatisticsAvgCardQualityNumber.text = avgCardQuality.toString()
 
-            binding.userStatisticsAvgCardQualityNumber.text = avgCardQuality.toString()
+                // Good cards
+                val nGoodCards = cards.filter { it.quality == 5 }.size
+                PieEntry(nGoodCards.toFloat(), 0).let { entries.add(it) }
+                binding.userStatisticsGoodCardsNumber.setText(nGoodCards.toString())
 
-            // Difficult cards
-            cards.filter { it.quality == 0 }.size.let {
-                PieEntry(it.toFloat(), 0) }?.let { entries.add(it)
+                // Doubt cards
+                val nDoubtCards = cards.filter { it.quality == 3 }.size
+                PieEntry(nDoubtCards.toFloat(), 0).let { entries.add(it) }
+                binding.userStatisticsDoubtCardsNumber.setText(nDoubtCards.toString())
+
+                // Difficult cards
+                val nDifficultCards = cards.filter { it.quality == 0 }.size
+                PieEntry(nDifficultCards.toFloat(), 0).let { entries.add(it) }
+                binding.userStatisticsBadCardsNumber.setText(nDifficultCards.toString())
+
+                // Repetitions
+                binding.userStatisticsNumberOfReviewsNumber.setText(cards.count { it.answered }.toString())
+
+                // Due this week
+                val nDueCardsWeek = cards?.filter {
+                    LocalDateTime.parse(it.nextPracticeDate).isBefore(LocalDateTime.now().plusWeeks(1))
                 }
+                binding.upcomingThisWeekNumber.setText(nDueCardsWeek?.size.toString() ?: 0.toString())
 
-            // Doubt cards
-            cards.filter { it.quality == 3 }.size.let {
-                PieEntry(it.toFloat(), 0) }?.let { entries.add(it)
+                // Due more than one week
+                var nDueCardsMoreWeek = cards?.filter {
+                    LocalDateTime.parse(it.nextPracticeDate).isAfter(LocalDateTime.now().plusWeeks(1))
                 }
+                binding.upcomingWeeksNumber.setText(nDueCardsMoreWeek?.size.toString() ?: 0.toString())
 
-            // Good cards
-            cards.filter { it.quality == 5 }.size.let {
-                PieEntry(it.toFloat(), 0) }?.let { entries.add(it)
+
+                //entries.add(PieEntry(viewModel.nDoubtCards.toFloat(), 1))
+                //entries.add(PieEntry(viewModel.nBadCards.toFloat(), 2))
+
+                val dataSet = PieDataSet(entries, "Card Performance")
+                dataSet.colors = listOf(
+                    Color.parseColor("#99CC00"), // green
+                    Color.parseColor("#33B5E5"), // blue
+                    Color.parseColor("#FF4444") // orange
+                )
+
+                dataSet.sliceSpace = 2f
+                dataSet.selectionShift = 5f
+                dataSet.setDrawValues(true)
+
+                val data = PieData(dataSet)
+                pieChart.data = data
+
+                pieChart.apply {
+                    isDrawHoleEnabled = true
+                    setHoleColor(Color.TRANSPARENT)
+                    holeRadius = 50f
+                    transparentCircleRadius = 55f
+
+                    invalidate()
                 }
-
-            // Repetitions
-            binding.userStatisticsNumberOfReviewsNumber.setText(cards.count { it.answered })
-
-            // Due this week
-            val nDueCardsWeek = cards?.filter {
-                LocalDateTime.parse(it.nextPracticeDate).isBefore(LocalDateTime.now().plusWeeks(1))
             }
-            binding.upcomingThisWeekNumber.setText(nDueCardsWeek?.size ?: 0)
 
-            // Due more than one week
-            var nDueCardsMoreWeek = cards?.filter {
-                LocalDateTime.parse(it.nextPracticeDate).isAfter(LocalDateTime.now().plusWeeks(1))
-            }
-            binding.upcomingWeeksNumber.setText(nDueCardsMoreWeek?.size ?: 0)
         }
 
-        //entries.add(PieEntry(viewModel.nDoubtCards.toFloat(), 1))
-        //entries.add(PieEntry(viewModel.nBadCards.toFloat(), 2))
-
-        val dataSet = PieDataSet(entries, "Card Performance")
-        dataSet.colors = listOf(
-            Color.parseColor("#99CC00"), // green
-            Color.parseColor("#33B5E5"), // blue
-            Color.parseColor("#FF4444") // orange
-        )
-
-        dataSet.sliceSpace = 2f
-        dataSet.selectionShift = 5f
-        dataSet.setDrawValues(true)
-
-        val data = PieData(dataSet)
-        pieChart.data = data
-
-        pieChart.apply {
-            isDrawHoleEnabled = true
-            setHoleColor(Color.TRANSPARENT)
-            holeRadius = 50f
-            transparentCircleRadius = 55f
-
-            invalidate()
-        }
         return binding.root
     }
 
@@ -127,12 +135,5 @@ class StatisticsFragment : Fragment() {
             Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
         }
     }
-
-    override fun onStart() {
-        Timber.i("On Resume statistics fragment")
-        //viewModel.updateLiveData()
-        super.onStart()
-    }
-
 
 }
