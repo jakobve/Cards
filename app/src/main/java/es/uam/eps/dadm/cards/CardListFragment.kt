@@ -3,6 +3,7 @@ package es.uam.eps.dadm.cards
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.RadioButton
 import androidx.core.content.ContentProviderCompat
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -66,7 +67,6 @@ class CardListFragment : Fragment() {
 
         // onClickListener to add a new card
         binding.newCardFab.setOnClickListener {
-            // CardsApplication.addCard(card)
 
             // TODO: Check if this is right
             it.findNavController()
@@ -74,8 +74,22 @@ class CardListFragment : Fragment() {
                     CardListFragmentDirections
                     .actionCardListFragmentToCardEditFragment(0.toString(), deckId)
                 )
-            //reference.child(card.id).setValue(card)
         }
+
+        binding.radioButtonGroup.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId) {
+                binding.radioQuality.id -> {
+                    adapter.data = cardListViewModel.cards.value!!.sortedByDescending { it.quality }
+                    adapter.notifyDataSetChanged()
+                }
+                binding.radioRepetitions.id -> {
+                    adapter.data = cardListViewModel.cards.value!!.sortedByDescending { it.quality }
+                    adapter.notifyDataSetChanged()
+                }
+
+            }
+        }
+
         return binding.root
     }
 
@@ -101,6 +115,5 @@ class CardListFragment : Fragment() {
         }
         return true
     }
-
 
 }

@@ -51,7 +51,7 @@ interface CardDao {
     @Query("DELETE FROM decks_table WHERE deckId = :deckId")
     fun deleteDeck(deckId: Long)
 
-    @Query("SELECT * FROM cards_table WHERE deckId = :deckId")
+    @Query("SELECT * FROM cards_table WHERE deckId = :deckId ORDER BY repetitions DESC")
     fun getCardsOfDeck(deckId: Long): LiveData<List<Card>>
 
     @Query("SELECT MAX(deckId) FROM decks_table")

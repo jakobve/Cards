@@ -11,10 +11,34 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <RadioGroup
+                android:id="@+id/radio_button_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:checkedButton="@id/radio_repetitions">
+
+                <RadioButton android:id="@+id/radio_repetitions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/repetision_text_cards_list"/>
+
+                <RadioButton android:id="@+id/radio_quality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quality_text_cards_list" />
+            </RadioGroup>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/radio_button_group"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/card_list_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@id/radio_button_group"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         </RelativeLayout>
