@@ -36,7 +36,7 @@ class StatisticsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate<FragmentStatisticsBinding>(
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_statistics,
             container,
@@ -56,41 +56,41 @@ class StatisticsFragment : Fragment() {
 
                 val avgCardQuality = cards.sumOf { it.quality }.div(cards.size)
 
-                binding.generalStatisticsTotalNumberOfDecksNumber.setText(decks.size.toString())
+                binding.generalStatisticsTotalNumberOfDecksNumber.text = decks.size.toString()
 
-                binding.generalStatisticsTotalNumberOfCardsNumber.setText(cards.size.toString())
+                binding.generalStatisticsTotalNumberOfCardsNumber.text = cards.size.toString()
 
                 binding.userStatisticsAvgCardQualityNumber.text = avgCardQuality.toString()
 
                 // Good cards
                 val nGoodCards = cards.filter { it.quality == 5 }.size
                 PieEntry(nGoodCards.toFloat(), 0).let { entries.add(it) }
-                binding.userStatisticsGoodCardsNumber.setText(nGoodCards.toString())
+                binding.userStatisticsGoodCardsNumber.text = nGoodCards.toString()
 
                 // Doubt cards
                 val nDoubtCards = cards.filter { it.quality == 3 }.size
                 PieEntry(nDoubtCards.toFloat(), 0).let { entries.add(it) }
-                binding.userStatisticsDoubtCardsNumber.setText(nDoubtCards.toString())
+                binding.userStatisticsDoubtCardsNumber.text = nDoubtCards.toString()
 
                 // Difficult cards
                 val nDifficultCards = cards.filter { it.quality == 0 }.size
                 PieEntry(nDifficultCards.toFloat(), 0).let { entries.add(it) }
-                binding.userStatisticsBadCardsNumber.setText(nDifficultCards.toString())
+                binding.userStatisticsBadCardsNumber.text = nDifficultCards.toString()
 
                 // Repetitions
-                binding.userStatisticsNumberOfReviewsNumber.setText(cards.count { it.answered }.toString())
+                binding.userStatisticsNumberOfReviewsNumber.text = cards.count { it.answered }.toString()
 
                 // Due this week
-                val nDueCardsWeek = cards?.filter {
+                val nDueCardsWeek = cards.filter {
                     LocalDateTime.parse(it.nextPracticeDate).isBefore(LocalDateTime.now().plusWeeks(1))
                 }
-                binding.upcomingThisWeekNumber.setText(nDueCardsWeek?.size.toString() ?: 0.toString())
+                binding.upcomingThisWeekNumber.text = nDueCardsWeek.size.toString()
 
                 // Due more than one week
-                var nDueCardsMoreWeek = cards?.filter {
+                val nDueCardsMoreWeek = cards.filter {
                     LocalDateTime.parse(it.nextPracticeDate).isAfter(LocalDateTime.now().plusWeeks(1))
                 }
-                binding.upcomingWeeksNumber.setText(nDueCardsMoreWeek?.size.toString() ?: 0.toString())
+                binding.upcomingWeeksNumber.text = nDueCardsMoreWeek.size.toString()
 
 
                 //entries.add(PieEntry(viewModel.nDoubtCards.toFloat(), 1))
@@ -119,16 +119,14 @@ class StatisticsFragment : Fragment() {
                     invalidate()
                 }
             }
-
         }
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.decksWithCards.observe(viewLifecycleOwner) {
+        viewModel.decksWithCards.observe(viewLifecycleOwner) { it ->
             var message = String()
             it.forEach {
                 message += "The deck named ${it.deck.name} has ${it.cards.size} cards\n" }
