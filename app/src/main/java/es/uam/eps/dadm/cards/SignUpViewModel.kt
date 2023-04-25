@@ -14,10 +14,6 @@ class SignUpViewModel : ViewModel() {
     private val _authenticationState = MutableLiveData<AuthenticationState>()
     val authenticationState: LiveData<AuthenticationState> = _authenticationState
 
-    enum class AuthenticationState {
-        AUTHENTICATED, INVALID_AUTHENTICATION
-    }
-
     fun signUp(email: String, password: String, username: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->

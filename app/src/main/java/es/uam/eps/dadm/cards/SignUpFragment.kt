@@ -49,16 +49,22 @@ class SignUpFragment : Fragment() {
 
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
             when (authenticationState) {
-                SignUpViewModel.AuthenticationState.AUTHENTICATED -> {
+                AuthenticationState.AUTHENTICATED -> {
                     view.findNavController().navigate(
                         SignUpFragmentDirections.actionSignUpFragmentToDeckListFragment()
                     )
                 }
-
-                SignUpViewModel.AuthenticationState.INVALID_AUTHENTICATION -> {
+                AuthenticationState.INVALID_AUTHENTICATION -> {
                     Toast.makeText(
                         requireContext(),
                         "Invalid credentials",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                else -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Authentication Error",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
