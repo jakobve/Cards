@@ -156,5 +156,5 @@
     <!-- Title activity settings -->
     <string name="title_activity_settings">Settings</string>
     <string name="repetision_text_cards_list">Repetision</string>
-    <string name="quality_text_cards_list">Quality</string>
+    <string name="easiness_text_cards_list">Easiness</string>
 </resources>

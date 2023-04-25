@@ -3,17 +3,12 @@ package es.uam.eps.dadm.cards
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.RadioButton
-import androidx.core.content.ContentProviderCompat
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.firebase.database.FirebaseDatabase
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
-import timber.log.Timber
-import java.util.concurrent.Executors
 
 class CardListFragment : Fragment() {
     private lateinit var  adapter: CardAdapter
@@ -78,12 +73,12 @@ class CardListFragment : Fragment() {
 
         binding.radioButtonGroup.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId) {
-                binding.radioQuality.id -> {
-                    adapter.data = cardListViewModel.cards.value!!.sortedByDescending { it.quality }
+                binding.radioEasiness.id -> {
+                    adapter.data = cardListViewModel.cards.value!!.sortedByDescending { it.easiness }
                     adapter.notifyDataSetChanged()
                 }
                 binding.radioRepetitions.id -> {
-                    adapter.data = cardListViewModel.cards.value!!.sortedByDescending { it.quality }
+                    adapter.data = cardListViewModel.cards.value!!.sortedByDescending { it.repetitions }
                     adapter.notifyDataSetChanged()
                 }
 

@@ -25,11 +25,13 @@ class CardEditFragment : Fragment() {
     private lateinit var card: Card
     lateinit var question: String
     lateinit var answer: String
+    lateinit var answer_a: String
+    lateinit var answer_b: String
+    lateinit var answer_c: String
 
     private val viewModel by lazy {
         ViewModelProvider(this).get(CardEditViewModel::class.java)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,6 +63,9 @@ class CardEditFragment : Fragment() {
             answer = card.answer
             binding.card = card
         }
+
+        binding.multipleChoiceEditCardAnswerText.isGone = true
+
         return binding.root
     }
 
@@ -97,15 +102,19 @@ class CardEditFragment : Fragment() {
 
         binding.editCardAcceptButton.setOnClickListener {
 
-            if(card.question.trim() != "" && card.answer.trim() != "" && card.id != "0") {
-                // TODO: Check if this is right??
-                executor.execute {
-                    viewModel.updateCard(card)
+            if(binding.cardChoiceGroup.checkedRadioButtonId == binding.radioNormalCard.id) {
+                if(card.question.trim() != "" && card.answer.trim() != "" && card.id != "0") {
+                    // TODO: Check if this is right??
+                    executor.execute {
+                        viewModel.updateCard(card)
+                    }
+                } else if (card.question.trim() != "" && card.answer.trim() != "" && card.id == "0") {
+                    card.id = UUID.randomUUID().toString()
+                    viewModel.addCard(card)
                 }
-            } else if (card.question.trim() != "" && card.answer.trim() != "" && card.id == "0") {
-                card.id = UUID.randomUUID().toString()
-                viewModel.addCard(card)
-            }
+            } else if (binding.cardChoiceGroup.checkedRadioButtonId == binding.radioMutlipleChoiceCard.id) {
+
+                }
 
             it.findNavController()
                 .navigate(CardEditFragmentDirections
@@ -137,6 +146,19 @@ class CardEditFragment : Fragment() {
                         card.deckId
                     )
                 )
+        }
+
+        binding.cardChoiceGroup.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId) {
+                binding.radioNormalCard.id -> {
+                    binding.multipleChoiceEditCardAnswerText.isGone = true
+                    binding.normalCardEditAnswer.isGone = false
+                }
+                binding.radioMutlipleChoiceCard.id -> {
+                    binding.normalCardEditAnswer.isGone = true
+                    binding.multipleChoiceEditCardAnswerText.isGone = false
+                }
+            }
         }
 
     }
