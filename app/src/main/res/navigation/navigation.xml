@@ -110,6 +110,9 @@
         <action
             android:id="@+id/action_signUpFragment_to_deckListFragment"
             app:destination="@id/deckListFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -119,5 +122,8 @@
         <action
             android:id="@+id/action_loginFragment_to_deckListFragment"
             app:destination="@id/deckListFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
 </navigation>

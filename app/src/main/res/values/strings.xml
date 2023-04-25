@@ -170,4 +170,5 @@
     <string name="email_address">Your email address</string>
     <string name="password">Your password</string>
     <string name="signup">Sign-up</string>
+    <string name="log_in">Log In</string>
 </resources>

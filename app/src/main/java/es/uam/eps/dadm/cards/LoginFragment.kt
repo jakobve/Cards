@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import es.uam.eps.dadm.cards.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -43,6 +42,13 @@ class LoginFragment : Fragment() {
                 ).show()
             }
         }
+
+        binding.goToSignup.setOnClickListener {
+            it.findNavController()
+                .navigate(LoginFragmentDirections
+                    .actionLoginFragmentToSignUpFragment())
+        }
+
         return binding.root
     }
 

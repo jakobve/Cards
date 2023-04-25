@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import es.uam.eps.dadm.cards.databinding.FragmentSignUpBinding
@@ -28,7 +27,6 @@ class SignUpFragment : Fragment() {
             inflater,
             container,
             false)
-
         return binding.root
     }
 
@@ -47,7 +45,7 @@ class SignUpFragment : Fragment() {
             }
         }
 
-        viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
+        viewModel.authenticationState.observe(viewLifecycleOwner) { authenticationState ->
             when (authenticationState) {
                 AuthenticationState.AUTHENTICATED -> {
                     view.findNavController().navigate(
@@ -69,7 +67,15 @@ class SignUpFragment : Fragment() {
                     ).show()
                 }
             }
-        })
+        }
+
+        binding.goToLogin.setOnClickListener {
+            it.findNavController()
+                .navigate(
+                    SignUpFragmentDirections
+                        .actionSignUpFragmentToLoginFragment()
+                )
+        }
     }
 
 }
