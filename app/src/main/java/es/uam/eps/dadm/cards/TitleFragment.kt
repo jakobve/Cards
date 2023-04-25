@@ -32,7 +32,7 @@ class TitleFragment : Fragment() {
 
         binding.titleFragmentRelativeLayout.setOnClickListener { view ->
             view.findNavController()
-                .navigate(R.id.action_titleFragment_to_deckListFragment)
+                .navigate(R.id.action_titleFragment_to_signUpFragment)
         }
 
         return binding.root

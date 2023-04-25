@@ -11,8 +11,8 @@
         android:label="TitleFragment"
         tools:layout="@layout/fragment_title">
         <action
-            android:id="@+id/action_titleFragment_to_deckListFragment"
-            app:destination="@id/deckListFragment" />
+            android:id="@+id/action_titleFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/studyFragment"
@@ -102,4 +102,13 @@
         android:name="es.uam.eps.dadm.cards.TutorialFragment"
         android:label="TutorialFragment"
         tools:layout="@layout/fragment_tutorial"/>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="es.uam.eps.dadm.cards.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUpFragment_to_deckListFragment"
+            app:destination="@id/deckListFragment" />
+    </fragment>
 </navigation>
