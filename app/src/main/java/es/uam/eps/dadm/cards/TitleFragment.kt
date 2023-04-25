@@ -5,12 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
-import timber.log.Timber
 
 class TitleFragment : Fragment() {
 
@@ -30,11 +29,16 @@ class TitleFragment : Fragment() {
             false
         )
 
-        binding.titleFragmentRelativeLayout.setOnClickListener { view ->
-            view.findNavController()
-                .navigate(R.id.action_titleFragment_to_signUpFragment)
-        }
+        val user = FirebaseAuth.getInstance().currentUser
 
+        binding.titleFragmentRelativeLayout.setOnClickListener { view ->
+
+            if (user != null) {
+                view.findNavController().navigate(R.id.action_titleFragment_to_deckListFragment)
+            } else {
+                view.findNavController().navigate(R.id.action_titleFragment_to_loginFragment)
+            }
+        }
         return binding.root
     }
 }
