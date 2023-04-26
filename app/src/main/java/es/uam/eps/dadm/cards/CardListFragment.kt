@@ -105,6 +105,10 @@ class CardListFragment : Fragment() {
             R.id.settings -> {
                 startActivity(Intent(requireContext(), SettingsActivity::class.java))
             }
+            R.id.log_out -> {
+                cardListViewModel.logOut()
+                view?.findNavController()?.navigate(R.id.loginFragment)
+            }
         }
         return true
     }

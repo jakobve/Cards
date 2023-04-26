@@ -2,6 +2,7 @@ package es.uam.eps.dadm.cards
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.google.firebase.auth.FirebaseAuth
 import es.uam.eps.dadm.cards.database.CardDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,6 +14,7 @@ import kotlin.properties.Delegates
 class CardListViewModel(application: Application): AndroidViewModel(application) {
 
     private val context = getApplication<Application>().applicationContext
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private var deckId = MutableLiveData<Long>()
 
@@ -24,4 +26,10 @@ class CardListViewModel(application: Application): AndroidViewModel(application)
        deckId.value = id
        Timber.i("Load deckId")
    }
+
+    fun logOut() {
+        SettingsActivity.setLoggedIn(context, false)
+        SettingsActivity.setUserID(context, "")
+        auth.signOut()
+    }
 }

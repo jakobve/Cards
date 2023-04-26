@@ -81,7 +81,8 @@
         tools:layout="@layout/fragment_deck_list">
         <action
             android:id="@+id/action_deckListFragment_to_cardListFragment"
-            app:destination="@id/cardListFragment" />
+            app:destination="@id/cardListFragment"
+            app:popUpTo="@id/deckListFragment" />
         <action
             android:id="@+id/action_deckListFragment_to_deckEditFragment"
             app:destination="@id/deckEditFragment" />
@@ -124,7 +125,8 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_deckListFragment"
-            app:destination="@id/deckListFragment" />
+            app:destination="@id/deckListFragment"
+            app:popUpTo="@id/deckListFragment" />
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
