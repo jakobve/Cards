@@ -33,18 +33,6 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.signupButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString().trim()
-            val password = binding.passwordEditText.text.toString().trim()
-            val username = binding.usernameEditText.text.toString().trim()
-
-            if (email.isNotEmpty() && password.isNotEmpty() && username.isNotEmpty()) {
-                viewModel.signUp(email, password, username)
-            } else {
-                Toast.makeText(requireContext(), "Please fill all the fields", Toast.LENGTH_SHORT).show()
-            }
-        }
-
         viewModel.authenticationState.observe(viewLifecycleOwner) { authenticationState ->
             when (authenticationState) {
                 AuthenticationState.AUTHENTICATED -> {
@@ -66,6 +54,18 @@ class SignUpFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            }
+        }
+
+        binding.signupButton.setOnClickListener {
+            val email = binding.emailEditText.text.toString().trim()
+            val password = binding.passwordEditText.text.toString().trim()
+            val username = binding.usernameEditText.text.toString().trim()
+
+            if (email.isNotEmpty() && password.isNotEmpty() && username.isNotEmpty()) {
+                viewModel.signUp(email, password, username)
+            } else {
+                Toast.makeText(requireContext(), "Please fill all the fields", Toast.LENGTH_SHORT).show()
             }
         }
 

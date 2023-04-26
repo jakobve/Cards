@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val context = getApplication<Application>().applicationContext
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val _authenticationState = MutableLiveData<AuthenticationState>()
     val authenticationState: LiveData<AuthenticationState> = _authenticationState
@@ -17,6 +18,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _authenticationState.value = AuthenticationState.AUTHENTICATED
+                    SettingsActivity.setLoggedIn(context, true)
+                    SettingsActivity.setUserID(context, email)
                 } else {
                     _authenticationState.value = AuthenticationState.INVALID_AUTHENTICATION
                 }

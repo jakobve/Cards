@@ -11,7 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
 
 class CardListFragment : Fragment() {
-    private lateinit var  adapter: CardAdapter
+    private lateinit var adapter: CardAdapter
 
     private var reference = FirebaseDatabase
         .getInstance()
@@ -91,8 +91,6 @@ class CardListFragment : Fragment() {
     // TODO
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //SettingsActivity.setLoggedIn(requireContext(), true)
         setHasOptionsMenu(true)
     }
 

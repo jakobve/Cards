@@ -43,6 +43,13 @@ class LoginFragment : Fragment() {
             }
         }
 
+        binding.loginButton.setOnClickListener {
+            viewModel.login(
+                binding.emailEditText.text.toString(),
+                binding.passwordEditText.text.toString()
+            )
+        }
+
         binding.goToSignup.setOnClickListener {
             it.findNavController()
                 .navigate(LoginFragmentDirections

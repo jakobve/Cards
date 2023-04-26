@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import es.uam.eps.dadm.cards.databinding.FragmentTitleBinding
 
 class TitleFragment : Fragment() {
@@ -29,11 +28,12 @@ class TitleFragment : Fragment() {
             false
         )
 
-        val user = FirebaseAuth.getInstance().currentUser
+        val userLoggedIn = titleViewModel.getUserLoggedIn()
+        val userId = titleViewModel.getUserId()
 
         binding.titleFragmentRelativeLayout.setOnClickListener { view ->
 
-            if (user != null) {
+            if (userLoggedIn && userId != "") {
                 view.findNavController().navigate(R.id.action_titleFragment_to_deckListFragment)
             } else {
                 view.findNavController().navigate(R.id.action_titleFragment_to_loginFragment)

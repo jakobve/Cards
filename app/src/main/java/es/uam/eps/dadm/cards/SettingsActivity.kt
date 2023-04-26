@@ -48,6 +48,10 @@ class SettingsActivity : AppCompatActivity() {
     companion object {
         const val MAX_NUMBER_CARDS_KEY = "max_number_cards"
         const val MAX_NUMBER_CARDS_DEFAULT = "20"
+        const val LOGGED_IN_KEY = "logged_in_key"
+        const val LOGGED_IN_DEFAULT = false
+        const val USER_ID = "user_id"
+        const val USER_ID_DEFAULT = ""
 
         fun getMaximumNumberOfCards(context: Context): String? {
             return PreferenceManager
@@ -55,7 +59,6 @@ class SettingsActivity : AppCompatActivity() {
                 .getString(MAX_NUMBER_CARDS_KEY, MAX_NUMBER_CARDS_DEFAULT)
         }
 
-        /*
         fun setLoggedIn(context: Context, loggedin: Boolean) {
             val sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context)
@@ -64,6 +67,25 @@ class SettingsActivity : AppCompatActivity() {
             editor.apply()
         }
 
-         */
+        fun getLoggedIn(context: Context): Boolean {
+            return PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getBoolean(LOGGED_IN_KEY, LOGGED_IN_DEFAULT)
+        }
+
+        fun setUserID(context: Context, userId: String) {
+            val sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context)
+            val editor = sharedPreferences.edit()
+            editor.putString(USER_ID, userId)
+            editor.apply()
+        }
+
+        fun getUserID(context: Context): String? {
+            return PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getString(USER_ID, USER_ID_DEFAULT)
+        }
+
     }
 }
