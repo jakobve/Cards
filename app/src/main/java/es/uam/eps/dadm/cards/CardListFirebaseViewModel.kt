@@ -10,23 +10,22 @@ import com.google.firebase.database.ValueEventListener
 
 class CardListFirebaseViewModel : ViewModel() {
 
-    private var _cards = MutableLiveData<List<Card>>()
-    val cards: LiveData<List<Card>>
-            get() = _cards
-    private var reference = FirebaseDatabase.getInstance().getReference("cards")
+    private var _deckWithCards = MutableLiveData<List<DeckWithCards>>()
+    val deckWithCards: LiveData<List<DeckWithCards>>
+            get() = _deckWithCards
+    private var reference = FirebaseDatabase.getInstance().getReference("decksWithCards")
 
     init {
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val listOfCards = mutableListOf<Card>()
+                val listOfDeckWithCards = mutableListOf<DeckWithCards>()
 
                 for (child in snapshot.children) {
-                    child.getValue(Card::class.java)?.let {
-                        listOfCards.add(it)
+                    child.getValue(DeckWithCards::class.java)?.let {
+                        listOfDeckWithCards.add(it)
                     }
                 }
-
-                _cards.value = listOfCards
+                _deckWithCards.value = listOfDeckWithCards
             }
 
             override fun onCancelled(error: DatabaseError) {}

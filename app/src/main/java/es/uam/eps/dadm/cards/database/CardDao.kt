@@ -15,7 +15,7 @@ interface CardDao {
     @Query("SELECT * FROM cards_table WHERE id = :id")
     fun getCard(id: String): LiveData<Card>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addCard(card: Card)
 
     @Delete

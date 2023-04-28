@@ -104,6 +104,8 @@ class CardsApplication: Application() {
             return cardDatabase!!.cardDao.getCardsOfDeck(deckId)
         }
 
+
+
         /*
         fun generateTestDeck() {
             if(cards.any { it.deckId == "test" } || decks.any { it.id == "test" }) {
