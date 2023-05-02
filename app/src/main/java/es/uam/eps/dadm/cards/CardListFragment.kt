@@ -81,10 +81,8 @@ class CardListFragment : Fragment() {
                     adapter.data = cardListViewModel.cards.value!!.sortedByDescending { it.repetitions }
                     adapter.notifyDataSetChanged()
                 }
-
             }
         }
-
         return binding.root
     }
 
@@ -108,6 +106,7 @@ class CardListFragment : Fragment() {
             R.id.log_out -> {
                 cardListViewModel.logOut()
                 view?.findNavController()?.navigate(R.id.loginFragment)
+
             }
         }
         return true

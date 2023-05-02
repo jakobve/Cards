@@ -33,7 +33,8 @@ class TitleActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         binding.navView.setupWithNavController(navHostFragment.navController)
 
-        downloadDecksWithCards()
+        downloadDecks()
+        downloadCards()
     }
 
     private fun setupMenu() {
@@ -52,24 +53,42 @@ class TitleActivity : AppCompatActivity() {
         })
     }
 
-    private fun downloadDecksWithCards() {
+    private fun downloadDecks() {
         val database = FirebaseDatabase.getInstance()
-        val reference = database.getReference("decksWithCards")
+        val reference = database.getReference("decks")
 
         reference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val decksWithCardsList = mutableListOf<DeckWithCards>()
+                val decksList = mutableListOf<Deck>()
                 for (deckSnapshot in snapshot.children) {
                     val deck = deckSnapshot.child("deck").getValue(Deck::class.java)
-                    val cardList = mutableListOf<Card>()
-                    for (cardSnapShot in deckSnapshot.child("cards").children) {
-                        val card = cardSnapShot.getValue(Card::class.java)
-                        card?.let { cardList.add(it) }
+                    if (deck != null) {
+                        decksList.add(deck)
                     }
-                    val deckWithCards = DeckWithCards(deck!!, cardList)
-                    decksWithCardsList.add(deckWithCards)
                 }
-                titleViewModel.saveDecksWithCardsLocally(decksWithCardsList)
+                titleViewModel.saveDecksLocally(decksList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Timber.i("Failed to read database value")
+            }
+        })
+    }
+
+    private fun downloadCards() {
+        val database = FirebaseDatabase.getInstance()
+        val reference = database.getReference("cards")
+
+        reference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val cardList = mutableListOf<Card>()
+                for (cardSnapshot in snapshot.children) {
+                    val card = cardSnapshot.child("card").getValue(Card::class.java)
+                    if (card != null) {
+                        cardList.add(card)
+                    }
+                }
+                titleViewModel.saveCardsLocally(cardList)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -84,16 +103,5 @@ class TitleActivity : AppCompatActivity() {
         if(titleViewModel.getUserLoggedIn()) {
             setupMenu()
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        uploadDecksWithCards()
-    }
-
-    private fun uploadDecksWithCards() {
-        val database = FirebaseDatabase.getInstance()
-        val reference = database.getReference("decksWithCards")
-        reference.setValue(titleViewModel.saveDecksWithCardsRemotely())
     }
 }

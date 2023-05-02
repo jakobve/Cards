@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import es.uam.eps.dadm.cards.database.CardDatabase
 import timber.log.Timber
 import java.time.LocalDateTime
@@ -82,9 +83,14 @@ class CardsApplication: Application() {
             }
         }
 
+        fun getDecks(context: Context): LiveData<List<Deck>> {
+            cardDatabase = initializeDatabase(context)
+            return cardDatabase!!.cardDao.getDecks()
+        }
+
         fun getDecksWithCards(context: Context): LiveData<List<DeckWithCards>> {
             cardDatabase = initializeDatabase(context)
-           return cardDatabase!!.cardDao.getDecksWithCards()
+            return cardDatabase!!.cardDao.getDecksWithCards()
         }
 
         fun getDeckWithCards(context: Context, deckId: Long): LiveData<DeckWithCards> {

@@ -3,6 +3,10 @@ package es.uam.eps.dadm.cards
 import android.app.Application
 import androidx.lifecycle.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import es.uam.eps.dadm.cards.database.CardDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
