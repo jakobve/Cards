@@ -71,7 +71,7 @@ class CardListFragment : Fragment() {
                 )
         }
 
-        binding.radioButtonGroup.setOnCheckedChangeListener { group, checkedId ->
+        binding.radioButtonGroup.setOnCheckedChangeListener { _, checkedId ->
             when(checkedId) {
                 binding.radioEasiness.id -> {
                     adapter.data = cardListViewModel.cards.value!!.sortedByDescending { it.easiness }

@@ -34,7 +34,6 @@ class TitleActivity : AppCompatActivity() {
         binding.navView.setupWithNavController(navHostFragment.navController)
 
         downloadDecksWithCards()
-        setupMenu()
     }
 
     private fun setupMenu() {
@@ -77,6 +76,14 @@ class TitleActivity : AppCompatActivity() {
                 Timber.i("Failed to read database value")
             }
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Only build menu when user is authenticated
+        if(titleViewModel.getUserLoggedIn()) {
+            setupMenu()
+        }
     }
 
     override fun onDestroy() {
