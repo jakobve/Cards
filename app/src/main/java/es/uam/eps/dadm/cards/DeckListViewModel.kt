@@ -11,9 +11,25 @@ class DeckListViewModel(application: Application): AndroidViewModel(application)
 
     val decksWithCards: LiveData<List<DeckWithCards>> = CardsApplication.getDecksWithCards(context)
 
-    fun uploadDecksWithCards() {
-        Timber.i("Upload decksWithCards")
-        var reference = FirebaseDatabase.getInstance().getReference("decksWithCards")
-        reference.setValue(decksWithCards.value)
+    fun uploadDecks() {
+        Timber.i("Upload decks")
+        var deckReference = FirebaseDatabase.getInstance().getReference("decks")
+        var deckList = mutableListOf<Deck>()
+        for(deckWithCards in decksWithCards!!.value!!) {
+            deckList.add(deckWithCards.deck)
+        }
+        deckReference.setValue(deckList)
+    }
+
+    fun uploadCards() {
+        Timber.i("Upload cards")
+        var cardReference = FirebaseDatabase.getInstance().getReference("cards")
+        var cardList = mutableListOf<Card>()
+        for(deckWithCards in decksWithCards!!.value!!) {
+            for(card in deckWithCards.cards) {
+                cardList.add(card)
+            }
+            cardReference.setValue(cardList)
+        }
     }
 }

@@ -24,7 +24,7 @@ interface CardDao {
     @Update
     fun updateCard(card: Card)
 
-    @Query("DELETE FROM cards_table")
+    @Query("DELETE FROM decks_table")
     fun nukeTable()
 
     @Query("SELECT * FROM decks_table")

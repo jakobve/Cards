@@ -58,7 +58,8 @@ class DeckListFragment : Fragment() {
     }
 
     override fun onStop() {
-        deckListViewModel.uploadDecksWithCards()
+        deckListViewModel.uploadDecks()
+        deckListViewModel.uploadCards()
         super.onStop()
     }
 

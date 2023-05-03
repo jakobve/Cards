@@ -75,6 +75,13 @@ class CardsApplication: Application() {
             }
         }
 
+        fun saveDeckLocally(context: Context, deck: Deck) {
+            cardDatabase = initializeDatabase(context)
+            executor.execute {
+                cardDatabase!!.cardDao.addDeck(deck)
+            }
+        }
+
         fun removeDeck(context: Context, deckId: Long) {
             cardDatabase = initializeDatabase(context)
             executor.execute {
@@ -109,8 +116,6 @@ class CardsApplication: Application() {
             cardDatabase = initializeDatabase(context)
             return cardDatabase!!.cardDao.getCardsOfDeck(deckId)
         }
-
-
 
         /*
         fun generateTestDeck() {

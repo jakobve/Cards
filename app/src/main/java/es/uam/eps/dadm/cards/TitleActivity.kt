@@ -32,9 +32,6 @@ class TitleActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         binding.navView.setupWithNavController(navHostFragment.navController)
-
-        downloadDecks()
-        downloadCards()
     }
 
     private fun setupMenu() {
@@ -49,50 +46,6 @@ class TitleActivity : AppCompatActivity() {
                     }
                 }
                 return true
-            }
-        })
-    }
-
-    private fun downloadDecks() {
-        val database = FirebaseDatabase.getInstance()
-        val reference = database.getReference("decks")
-
-        reference.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val decksList = mutableListOf<Deck>()
-                for (deckSnapshot in snapshot.children) {
-                    val deck = deckSnapshot.child("deck").getValue(Deck::class.java)
-                    if (deck != null) {
-                        decksList.add(deck)
-                    }
-                }
-                titleViewModel.saveDecksLocally(decksList)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Timber.i("Failed to read database value")
-            }
-        })
-    }
-
-    private fun downloadCards() {
-        val database = FirebaseDatabase.getInstance()
-        val reference = database.getReference("cards")
-
-        reference.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val cardList = mutableListOf<Card>()
-                for (cardSnapshot in snapshot.children) {
-                    val card = cardSnapshot.child("card").getValue(Card::class.java)
-                    if (card != null) {
-                        cardList.add(card)
-                    }
-                }
-                titleViewModel.saveCardsLocally(cardList)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Timber.i("Failed to read database value")
             }
         })
     }

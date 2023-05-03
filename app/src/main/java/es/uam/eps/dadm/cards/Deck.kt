@@ -17,6 +17,11 @@ data class Deck(
     @PrimaryKey var deckId: Long,
     var name: String
     ) {
+
+    constructor(): this(
+        -1,
+        "testDeck"
+    )
     /*
     var cards: MutableList<Card> = mutableListOf()
     var repetitionsToday = 0

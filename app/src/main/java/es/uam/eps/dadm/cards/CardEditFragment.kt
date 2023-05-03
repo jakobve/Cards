@@ -64,8 +64,6 @@ class CardEditFragment : Fragment() {
             binding.card = card
         }
 
-        binding.multipleChoiceEditCardAnswerText.isGone = true
-
         return binding.root
     }
 
@@ -102,19 +100,15 @@ class CardEditFragment : Fragment() {
 
         binding.editCardAcceptButton.setOnClickListener {
 
-            if(binding.cardChoiceGroup.checkedRadioButtonId == binding.radioNormalCard.id) {
-                if(card.question.trim() != "" && card.answer.trim() != "" && card.id != "0") {
-                    // TODO: Check if this is right??
-                    executor.execute {
-                        viewModel.updateCard(card)
-                    }
-                } else if (card.question.trim() != "" && card.answer.trim() != "" && card.id == "0") {
-                    card.id = UUID.randomUUID().toString()
-                    viewModel.addCard(card)
+            if(card.question.trim() != "" && card.answer.trim() != "" && card.id != "0") {
+                // TODO: Check if this is right??
+                executor.execute {
+                    viewModel.updateCard(card)
                 }
-            } else if (binding.cardChoiceGroup.checkedRadioButtonId == binding.radioMutlipleChoiceCard.id) {
-
-                }
+            } else if (card.question.trim() != "" && card.answer.trim() != "" && card.id == "0") {
+                card.id = UUID.randomUUID().toString()
+                viewModel.addCard(card)
+            }
 
             it.findNavController()
                 .navigate(CardEditFragmentDirections
@@ -147,20 +141,5 @@ class CardEditFragment : Fragment() {
                     )
                 )
         }
-
-        binding.cardChoiceGroup.setOnCheckedChangeListener { group, checkedId ->
-            when(checkedId) {
-                binding.radioNormalCard.id -> {
-                    binding.multipleChoiceEditCardAnswerText.isGone = true
-                    binding.normalCardEditAnswer.isGone = false
-                }
-                binding.radioMutlipleChoiceCard.id -> {
-                    binding.normalCardEditAnswer.isGone = true
-                    binding.multipleChoiceEditCardAnswerText.isGone = false
-                }
-            }
-        }
-
     }
-
 }
