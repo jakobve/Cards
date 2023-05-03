@@ -100,6 +100,11 @@ class CardsApplication: Application() {
             return cardDatabase!!.cardDao.getDecksWithCards()
         }
 
+        fun getDecksWithCardsForUser(context: Context, userId: String): LiveData<List<DeckWithCards>> {
+            cardDatabase = initializeDatabase(context)
+            return cardDatabase!!.cardDao.getDecksWithCardsForUser(userId)
+        }
+
         fun getDeckWithCards(context: Context, deckId: Long): LiveData<DeckWithCards> {
             cardDatabase = initializeDatabase(context)
             return cardDatabase!!.cardDao.getDeckWithCards(deckId)
@@ -115,6 +120,20 @@ class CardsApplication: Application() {
         fun getCardsOfDeck(context: Context, deckId: Long): LiveData<List<Card>> {
             cardDatabase = initializeDatabase(context)
             return cardDatabase!!.cardDao.getCardsOfDeck(deckId)
+        }
+
+        fun deleteAllCardsLocally(context: Context) {
+            cardDatabase = initializeDatabase(context)
+            executor.execute {
+                cardDatabase!!.cardDao.nukeCardsTable()
+            }
+        }
+
+        fun deleteAllDecksLocally(context: Context) {
+            cardDatabase = initializeDatabase(context)
+            executor.execute {
+                cardDatabase!!.cardDao.nukeDecksTable()
+            }
         }
 
         /*

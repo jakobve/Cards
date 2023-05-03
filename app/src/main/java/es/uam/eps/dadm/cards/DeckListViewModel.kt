@@ -9,7 +9,7 @@ import timber.log.Timber
 class DeckListViewModel(application: Application): AndroidViewModel(application) {
     private val context = getApplication<Application>().applicationContext
 
-    val decksWithCards: LiveData<List<DeckWithCards>> = CardsApplication.getDecksWithCards(context)
+    val decksWithCards: LiveData<List<DeckWithCards>> = CardsApplication.getDecksWithCardsForUser(context, getUserId()!!)
 
     fun uploadDecks() {
         Timber.i("Upload decks")
@@ -31,5 +31,9 @@ class DeckListViewModel(application: Application): AndroidViewModel(application)
             }
             cardReference.setValue(cardList)
         }
+    }
+
+    private fun getUserId(): String? {
+        return SettingsActivity.getUserID(context)
     }
 }

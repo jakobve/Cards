@@ -48,7 +48,14 @@ class DeckEditFragment : Fragment() {
                 name = deckWithCards.deck.name
             }
         } else {
-            deckWithCards  = DeckWithCards(Deck(args.deckId, ""), mutableListOf<Card>())
+            deckWithCards  = DeckWithCards(
+                Deck(
+                    args.deckId,
+                    "",
+                    deckEditViewModel.getUserId()!!
+                ),
+                mutableListOf<Card>()
+            )
             binding.deck = deckWithCards.deck
             name = deckWithCards.deck.name
         }

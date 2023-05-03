@@ -15,12 +15,14 @@ import java.lang.Exception
 @Entity(tableName = "decks_table")
 data class Deck(
     @PrimaryKey var deckId: Long,
-    var name: String
+    var name: String,
+    var userId: String
     ) {
 
     constructor(): this(
         -1,
-        "testDeck"
+        "testDeck",
+        "user"
     )
     /*
     var cards: MutableList<Card> = mutableListOf()

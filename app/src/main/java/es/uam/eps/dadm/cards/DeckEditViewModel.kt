@@ -29,4 +29,8 @@ class DeckEditViewModel(application: Application): AndroidViewModel(application)
     fun addDeck(deckWithCards: DeckWithCards) {
         CardsApplication.addDeck(context, deckWithCards.deck)
     }
+
+    fun getUserId(): String? {
+        return SettingsActivity.getUserID(context)
+    }
 }

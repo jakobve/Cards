@@ -77,4 +77,12 @@ class TitleViewModel(application: Application): AndroidViewModel(application) {
             override fun onCancelled(error: DatabaseError) {}
         })
     }
+
+    fun deleteAllCardsLocally() {
+        CardsApplication.deleteAllCardsLocally(context)
+    }
+
+    fun deleteAllDecksLocally() {
+        CardsApplication.deleteAllDecksLocally(context)
+    }
 }
