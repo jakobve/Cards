@@ -3,11 +3,8 @@ package es.uam.eps.dadm.cards
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import es.uam.eps.dadm.cards.database.CardDatabase
 import timber.log.Timber
-import java.time.LocalDateTime
 import java.util.concurrent.Executors
 
 class CardsApplication: Application() {
@@ -60,12 +57,16 @@ class CardsApplication: Application() {
             return cardDatabase!!.cardDao.getCards()
         }
 
+        // TODO
+        /*
         fun getNDueCards(context: Context): LiveData<Int> {
             cardDatabase = initializeDatabase(context)
             val cards = getCards(context)
             Timber.i(cards.value?.size.toString())
             return MutableLiveData(cards.value?.filter { it.isDue(LocalDateTime.now()) }?.size ?: 0)
         }
+
+         */
 
         fun addDeck(context: Context, deck: Deck) {
             cardDatabase = initializeDatabase(context)
@@ -90,10 +91,14 @@ class CardsApplication: Application() {
             }
         }
 
+        // TODO
+        /*
         fun getDecks(context: Context): LiveData<List<Deck>> {
             cardDatabase = initializeDatabase(context)
             return cardDatabase!!.cardDao.getDecks()
         }
+
+         */
 
         fun getDecksWithCards(context: Context): LiveData<List<DeckWithCards>> {
             cardDatabase = initializeDatabase(context)
@@ -122,6 +127,8 @@ class CardsApplication: Application() {
             return cardDatabase!!.cardDao.getCardsOfDeck(deckId)
         }
 
+        // TODO
+        /*
         fun deleteAllCardsLocally(context: Context) {
             cardDatabase = initializeDatabase(context)
             executor.execute {
@@ -136,7 +143,7 @@ class CardsApplication: Application() {
             }
         }
 
-        /*
+
         fun generateTestDeck() {
             if(cards.any { it.deckId == "test" } || decks.any { it.id == "test" }) {
                 cards.removeAll { it.deckId == "test" }
