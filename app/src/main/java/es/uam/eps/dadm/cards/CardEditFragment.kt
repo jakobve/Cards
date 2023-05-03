@@ -11,7 +11,6 @@ import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import es.uam.eps.dadm.cards.database.CardDatabase
 import es.uam.eps.dadm.cards.databinding.FragmentCardEditBinding
 import timber.log.Timber
 import java.util.UUID
@@ -25,12 +24,9 @@ class CardEditFragment : Fragment() {
     private lateinit var card: Card
     lateinit var question: String
     lateinit var answer: String
-    lateinit var answer_a: String
-    lateinit var answer_b: String
-    lateinit var answer_c: String
 
     private val viewModel by lazy {
-        ViewModelProvider(this).get(CardEditViewModel::class.java)
+        ViewModelProvider(this)[CardEditViewModel::class.java]
     }
 
     override fun onCreateView(
