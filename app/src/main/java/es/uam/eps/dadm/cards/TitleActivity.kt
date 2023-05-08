@@ -11,12 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import es.uam.eps.dadm.cards.databinding.ActivityTitleBinding
-import timber.log.Timber
 
 class TitleActivity : AppCompatActivity() {
 
@@ -32,6 +27,11 @@ class TitleActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         binding.navView.setupWithNavController(navHostFragment.navController)
+
+        // Only build menu when user is authenticated
+        if(titleViewModel.getUserLoggedIn()) {
+            setupMenu()
+        }
     }
 
     private fun setupMenu() {
@@ -48,13 +48,5 @@ class TitleActivity : AppCompatActivity() {
                 return true
             }
         })
-    }
-
-    override fun onStart() {
-        super.onStart()
-        // Only build menu when user is authenticated
-        if(titleViewModel.getUserLoggedIn()) {
-            setupMenu()
-        }
     }
 }

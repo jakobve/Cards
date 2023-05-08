@@ -7,15 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.google.firebase.database.FirebaseDatabase
 import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
 
 class CardListFragment : Fragment() {
     private lateinit var adapter: CardAdapter
-
-    private var reference = FirebaseDatabase
-        .getInstance()
-        .getReference("cards")
 
     private val cardListViewModel by lazy {
         ViewModelProvider(this)[CardListViewModel::class.java]
@@ -86,7 +81,7 @@ class CardListFragment : Fragment() {
         return binding.root
     }
 
-    // TODO
+    /*
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -96,6 +91,7 @@ class CardListFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_card_list, menu)
     }
+     */
 
     // TODO
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
