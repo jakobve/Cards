@@ -176,5 +176,6 @@
     <string name="signup">Sign-up</string>
     <string name="log_in">Log In</string>
     <string name="answer_button_text">Check answer</string>
+    <string name="congrats_n_you_have_reviewed_all_cards_for_today">Congrats!! \nYou have reviewed all cards for today.</string>
 
 </resources>

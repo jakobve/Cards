@@ -12,7 +12,7 @@ import es.uam.eps.dadm.cards.databinding.FragmentCardListBinding
 class CardListFragment : Fragment() {
     private lateinit var adapter: CardAdapter
 
-    private val cardListViewModel by lazy {
+    private val viewModel by lazy {
         ViewModelProvider(this)[CardListViewModel::class.java]
     }
 
@@ -38,9 +38,9 @@ class CardListFragment : Fragment() {
         adapter.data = emptyList()
         binding.cardListRecyclerView.adapter = adapter
 
-        cardListViewModel.loadDeckId(args.deckId)
+        viewModel.loadDeckId(args.deckId)
 
-        cardListViewModel.cards.observe(viewLifecycleOwner) {
+        viewModel.cards.observe(viewLifecycleOwner) {
             adapter.data = it
             adapter.notifyDataSetChanged()
         }
@@ -69,11 +69,11 @@ class CardListFragment : Fragment() {
         binding.radioButtonGroup.setOnCheckedChangeListener { _, checkedId ->
             when(checkedId) {
                 binding.radioEasiness.id -> {
-                    adapter.data = cardListViewModel.cards.value!!.sortedByDescending { it.easiness }
+                    adapter.data = viewModel.cards.value!!.sortedByDescending { it.easiness }
                     adapter.notifyDataSetChanged()
                 }
                 binding.radioRepetitions.id -> {
-                    adapter.data = cardListViewModel.cards.value!!.sortedByDescending { it.repetitions }
+                    adapter.data = viewModel.cards.value!!.sortedByDescending { it.repetitions }
                     adapter.notifyDataSetChanged()
                 }
             }
@@ -100,7 +100,7 @@ class CardListFragment : Fragment() {
                 startActivity(Intent(requireContext(), SettingsActivity::class.java))
             }
             R.id.log_out -> {
-                cardListViewModel.logOut()
+                viewModel.logOut()
                 view?.findNavController()?.navigate(R.id.loginFragment)
 
             }

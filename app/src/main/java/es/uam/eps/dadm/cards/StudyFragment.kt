@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import es.uam.eps.dadm.cards.databinding.FragmentStudyBinding
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class StudyFragment : Fragment() {
@@ -20,7 +22,7 @@ class StudyFragment : Fragment() {
 
     private lateinit var binding: FragmentStudyBinding
 
-    private lateinit var card: Card
+    private var card: Card? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,10 +57,10 @@ class StudyFragment : Fragment() {
         viewModel.loadDeckId(deckId)
 
         viewModel.dueCard.observe(viewLifecycleOwner) {
-            if (it != null) {
-                card = it
-            }
+
+            card = it
             binding.card = card
+
             binding.invalidateAll()
         }
 
@@ -68,7 +70,7 @@ class StudyFragment : Fragment() {
         }
 
         binding.answerButton.setOnClickListener {
-            card.answered = true
+            card?.answered = true
             binding.invalidateAll()
         }
 

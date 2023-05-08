@@ -52,18 +52,21 @@ class StatisticsFragment : Fragment() {
                 decks = decksWithCards.map { it.deck }
                 cards = decksWithCards.flatMap { it.cards }
 
-                Timber.i(decks.size.toString())
-                for(deck in decks) {
-                    Timber.i(deck.name)
-                }
-
-
                 val avgCardQuality = cards.sumOf { it.quality }.div(cards.size)
 
-                binding.generalStatisticsTotalNumberOfDecksNumber.text = decks.count().toString()
+                // Number of decks
+                binding.generalStatisticsTotalNumberOfDecksNumber.text = decks.size.toString()
 
-                binding.generalStatisticsTotalNumberOfCardsNumber.text = cards.count().toString()
+                // Number of cards
+                binding.generalStatisticsTotalNumberOfCardsNumber.text = cards.size.toString()
 
+                // Repetitions
+                binding.userStatisticsNumberOfReviewsNumber.text = cards.count { it.answered }.toString()
+
+                // Number of reviews today
+                binding.userStatisticsNumberOfReviewsNumber.text = cards.filter { it.answered }.size.toString()
+
+                // Average quality of cards
                 binding.userStatisticsAvgCardQualityNumber.text = avgCardQuality.toString()
 
                 // Good cards
@@ -80,9 +83,6 @@ class StatisticsFragment : Fragment() {
                 val nDifficultCards = cards.filter { it.quality == 0 }.size
                 PieEntry(nDifficultCards.toFloat(), 0).let { entries.add(it) }
                 binding.userStatisticsBadCardsNumber.text = nDifficultCards.toString()
-
-                // Repetitions
-                binding.userStatisticsNumberOfReviewsNumber.text = cards.count { it.answered }.toString()
 
                 // Due this week
                 val nDueCardsWeek = cards.filter {

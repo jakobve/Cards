@@ -31,16 +31,10 @@ class StudyViewModel(application: Application): AndroidViewModel(application) {
     }
 
     val nDueCards: LiveData<Int> = cards.map() {
-        it.filter { card -> card.isDue((LocalDateTime.now())) }.size
+        it.filter { card -> card.isDue((LocalDateTime.now())) }.size + 1
     }
 
     private val _nRepetitions = MutableLiveData<Int>()
-
-    init {
-        //card = randomCard()
-        //_nDueCards.value = dueCards().size
-        //_nRepetitions.value = repetitions()
-    }
 
     fun loadDeckId(id: Long) {
         deckId.value = id
@@ -48,6 +42,7 @@ class StudyViewModel(application: Application): AndroidViewModel(application) {
 
     fun update(quality: Int) {
         dueCard.value?.quality = quality
+        dueCard.value?.answered = true
         dueCard.value?.update(LocalDateTime.now())
         //card = randomCard()
         executor.execute {
