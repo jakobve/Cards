@@ -7,5 +7,9 @@ class StatisticsViewModel(application: Application): AndroidViewModel(applicatio
 
     private var context = getApplication<Application>().applicationContext
 
-    var decksWithCards: LiveData<List<DeckWithCards>> = CardsApplication.getDecksWithCards(context)
+    private val userId = SettingsActivity.getUserID(context)
+
+    var decksWithCards: LiveData<List<DeckWithCards>> = CardsApplication.getDecksWithCardsForUser(context, userId!!)
+
+
 }

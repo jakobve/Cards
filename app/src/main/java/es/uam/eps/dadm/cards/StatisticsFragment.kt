@@ -53,12 +53,16 @@ class StatisticsFragment : Fragment() {
                 cards = decksWithCards.flatMap { it.cards }
 
                 Timber.i(decks.size.toString())
+                for(deck in decks) {
+                    Timber.i(deck.name)
+                }
+
 
                 val avgCardQuality = cards.sumOf { it.quality }.div(cards.size)
 
-                binding.generalStatisticsTotalNumberOfDecksNumber.text = decks.size.toString()
+                binding.generalStatisticsTotalNumberOfDecksNumber.text = decks.count().toString()
 
-                binding.generalStatisticsTotalNumberOfCardsNumber.text = cards.size.toString()
+                binding.generalStatisticsTotalNumberOfCardsNumber.text = cards.count().toString()
 
                 binding.userStatisticsAvgCardQualityNumber.text = avgCardQuality.toString()
 
