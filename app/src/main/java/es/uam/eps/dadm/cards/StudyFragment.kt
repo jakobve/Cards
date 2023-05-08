@@ -11,7 +11,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import es.uam.eps.dadm.cards.databinding.FragmentStudyBinding
 import timber.log.Timber
-import kotlin.properties.Delegates
 
 class StudyFragment : Fragment() {
 
@@ -22,7 +21,6 @@ class StudyFragment : Fragment() {
     private lateinit var binding: FragmentStudyBinding
 
     private lateinit var card: Card
-    private var nDueCards by Delegates.notNull<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,10 +44,6 @@ class StudyFragment : Fragment() {
             }
             viewModel.update(quality)
 
-            if(card == null) {
-                Timber.i("Card is null")
-                Toast.makeText(requireContext(), "No more cards to review", Toast.LENGTH_SHORT).show()
-            }
             binding.boardView.clearBoard()
             binding.invalidateAll()
         }
@@ -69,7 +63,7 @@ class StudyFragment : Fragment() {
         }
 
         viewModel.nDueCards.observe(viewLifecycleOwner) {
-            binding.dueCardsInfoChip.text = it.toString()
+            binding.dueCardsInfoChip.text = "$it cards remaining"
             binding.invalidateAll()
         }
 

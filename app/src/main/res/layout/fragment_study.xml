@@ -23,7 +23,6 @@
             android:layout_centerHorizontal="true"
             android:textSize="20sp"
             android:src="@drawable/ic_baseline_assessment_24"
-            android:text="@{@string/due_cards_format}"
             tools:text="@string/due_cards_info_text_view_message"/>
 
         <View
