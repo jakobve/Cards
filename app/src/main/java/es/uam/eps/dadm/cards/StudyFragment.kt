@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import es.uam.eps.dadm.cards.databinding.FragmentStudyBinding
@@ -18,6 +19,8 @@ class StudyFragment : Fragment() {
      ViewModelProvider(this)[StudyViewModel::class.java]
     }
 
+    private lateinit var binding: FragmentStudyBinding
+
     private lateinit var card: Card
     private var nDueCards by Delegates.notNull<Int>()
 
@@ -26,7 +29,8 @@ class StudyFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = DataBindingUtil.inflate<FragmentStudyBinding>(
+
+        binding = DataBindingUtil.inflate<FragmentStudyBinding>(
             inflater,
             R.layout.fragment_study,
             container,
@@ -46,6 +50,7 @@ class StudyFragment : Fragment() {
                 Timber.i("Card is null")
                 Toast.makeText(requireContext(), "No more cards to review", Toast.LENGTH_SHORT).show()
             }
+            binding.boardView.clearBoard()
             binding.invalidateAll()
         }
 
@@ -68,7 +73,7 @@ class StudyFragment : Fragment() {
             binding.invalidateAll()
         }
 
-        binding.studyFragmentContainer.setOnClickListener {
+        binding.answerButton.setOnClickListener {
             card.answered = true
             binding.invalidateAll()
         }
@@ -86,6 +91,17 @@ class StudyFragment : Fragment() {
         // Retrieve arguments needed
         val args = CardListFragmentArgs.fromBundle(requireArguments())
         val deckId = args.deckId
+
+        if(viewModel.getBoardSetting()) {
+            Timber.i("Board activated")
+            binding.boardView.isGone = false
+            binding.separatorViewBoard1.isGone = false
+            binding.separatorViewBoard2.isGone = false
+        } else {
+            binding.boardView.isGone = true
+            binding.separatorViewBoard1.isGone = true
+            binding.separatorViewBoard2.isGone = true
+        }
 
         viewModel.loadDeckId(deckId)
 

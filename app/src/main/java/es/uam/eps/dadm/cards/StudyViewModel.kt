@@ -1,6 +1,7 @@
 package es.uam.eps.dadm.cards
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.*
 import es.uam.eps.dadm.cards.database.CardDatabase
 import java.time.LocalDateTime
@@ -52,5 +53,13 @@ class StudyViewModel(application: Application): AndroidViewModel(application) {
         executor.execute {
             dueCard.value?.let { CardsApplication.updateCard(context, it) }
         }
+    }
+
+    fun getMaxNumberOfCardsSetting(): Int {
+        return SettingsActivity.getMaximumNumberOfCards(context)?.toInt() ?: 20
+    }
+
+    fun getBoardSetting(): Boolean {
+        return SettingsActivity.getBoardPreference(context)
     }
 }

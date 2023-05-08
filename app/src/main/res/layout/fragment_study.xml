@@ -26,6 +26,28 @@
             android:text="@{@string/due_cards_format}"
             tools:text="@string/due_cards_info_text_view_message"/>
 
+        <View
+            android:id="@+id/separator_view_board_1"
+            android:layout_above="@id/board_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
+
+        <es.uam.eps.dadm.cards.BoardView
+            android:id="@+id/board_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="30dp"
+            android:layout_above="@id/question_text_view"/>
+
+        <View
+            android:id="@+id/separator_view_board_2"
+            android:layout_above="@id/question_text_view"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="30dp"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
+
         <TextView
             android:id="@+id/question_text_view"
             android:layout_width="wrap_content"
@@ -56,15 +78,13 @@
             android:text="@{card.answer}"
             tools:text="Answer text"/>
 
-        <!--
         <Button
             android:id="@+id/answer_button"
             android:layout_below="@id/question_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{viewModel.card.answered ? View.INVISIBLE : View.VISIBLE}"
+            android:visibility="@{card.answered ? View.INVISIBLE : View.VISIBLE}"
             android:text="@string/answer_button_text" />
-            -->
 
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/difficulty_buttons"

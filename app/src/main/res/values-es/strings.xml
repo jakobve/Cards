@@ -175,5 +175,6 @@
     <string name="password">Your password</string>
     <string name="signup">Sign-up</string>
     <string name="log_in">Log In</string>
+    <string name="answer_button_text">Check answer</string>
 
 </resources>

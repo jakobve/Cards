@@ -1,15 +1,17 @@
 package es.uam.eps.dadm.cards
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 
 class SettingsActivity : AppCompatActivity() {
+
+    private lateinit var listener : SharedPreferences.OnSharedPreferenceChangeListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +23,10 @@ class SettingsActivity : AppCompatActivity() {
                 .commit()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false)
+        PreferenceManager.setDefaultValues(
+            this,
+            R.xml.root_preferences,
+            false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -48,6 +53,8 @@ class SettingsActivity : AppCompatActivity() {
     companion object {
         const val MAX_NUMBER_CARDS_KEY = "max_number_cards"
         const val MAX_NUMBER_CARDS_DEFAULT = "20"
+        const val BOARD_KEY = "board"
+        const val BOARD_DEFAULT = false
         const val LOGGED_IN_KEY = "logged_in_key"
         const val LOGGED_IN_DEFAULT = false
         const val USER_ID = "user_id"
@@ -59,11 +66,17 @@ class SettingsActivity : AppCompatActivity() {
                 .getString(MAX_NUMBER_CARDS_KEY, MAX_NUMBER_CARDS_DEFAULT)
         }
 
-        fun setLoggedIn(context: Context, loggedin: Boolean) {
+        fun getBoardPreference(context: Context): Boolean {
+            return PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getBoolean(BOARD_KEY, BOARD_DEFAULT)
+        }
+
+        fun setLoggedIn(context: Context, loggedIn: Boolean) {
             val sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context)
             val editor = sharedPreferences.edit()
-            editor.putBoolean(LOGGED_IN_KEY, loggedin)
+            editor.putBoolean(LOGGED_IN_KEY, loggedIn)
             editor.apply()
         }
 

@@ -42,4 +42,9 @@ class BoardView(
         postInvalidate()
         return true
     }
+
+    fun clearBoard() {
+        path.reset()
+        invalidate()
+    }
 }
