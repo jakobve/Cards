@@ -103,4 +103,10 @@ class StudyFragment : Fragment() {
 
         super.onStart()
     }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.setRepetitionsToday()
+        viewModel.setLastStudySession()
+    }
 }

@@ -17,7 +17,6 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import es.uam.eps.dadm.cards.databinding.FragmentStatisticsForecastBinding
-import es.uam.eps.dadm.cards.databinding.FragmentStatisticsUserBinding
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -48,22 +47,22 @@ class StatisticsForecastFragment : Fragment() {
         //Create BarChart
         barChart = binding.barChart
 
-        val xAxisLables = mutableListOf("Today", "Tomorrow", "Day after Tomorrow")
+        val xAxisLabels = mutableListOf("Today", "Tomorrow", "Day after Tomorrow")
         // Customize the appearance of the chart
         barChart.apply {
             data = barData
             xAxis.apply {
                 setDrawLabels(true)
-                setPosition(XAxis.XAxisPosition.BOTTOM)
                 setDrawGridLines(false)
                 setDrawAxisLine(true)
                 setLabelCount(3, true)
+                position = XAxis.XAxisPosition.BOTTOM
                 textSize = 15f
                 granularity = 1f
                 textColor = Color.BLACK
                 valueFormatter = object : ValueFormatter() {
                     override fun getAxisLabel(value: Float, axis: AxisBase): String {
-                        return xAxisLables.get(value.toInt())
+                        return xAxisLabels[value.toInt()]
                     }
                 }
             }
@@ -72,7 +71,7 @@ class StatisticsForecastFragment : Fragment() {
                 setDrawGridLines(true)
                 setDrawAxisLine(true)
                 setDrawZeroLine(true)
-                setZeroLineWidth(1f)
+                zeroLineWidth = 1f
                 granularity = 1f
                 axisMinimum = 0f
                 textSize = 12f
