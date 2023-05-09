@@ -26,7 +26,12 @@ class TitleActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_title)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
-        binding.navView.setupWithNavController(navHostFragment.navController)
+        val navController = navHostFragment.navController
+        binding.navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            navHostFragment.setMenuVisibility(false)
+        }
 
         // Only build menu when user is authenticated
         if(titleViewModel.getUserLoggedIn()) {

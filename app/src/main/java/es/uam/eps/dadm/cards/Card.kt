@@ -75,7 +75,7 @@ open class Card(
             repetitions += 1
         }
 
-        if(repetitions <= 1) {
+        if(repetitions in 0..1) {
             interval = 1
         } else if (repetitions == 2) {
             interval = 6
