@@ -2,24 +2,31 @@ package es.uam.eps.dadm.cards
 
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.android.material.snackbar.Snackbar
 import es.uam.eps.dadm.cards.databinding.FragmentStatisticsBinding
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.time.LocalDateTime
+
 
 class StatisticsFragment : Fragment() {
 
@@ -54,12 +61,54 @@ class StatisticsFragment : Fragment() {
             setHoleColor(Color.TRANSPARENT)
             holeRadius = 50f
             transparentCircleRadius = 55f
-            invalidate()
         }
 
         //Create BarChart
         barChart = binding.barChart
 
+        val xAxisLables = mutableListOf("Today", "Tomorrow", "Day after Tomorrow")
+        // Customize the appearance of the chart
+        barChart.apply {
+            data = barData
+            xAxis.apply {
+                setDrawLabels(true)
+                setPosition(XAxis.XAxisPosition.BOTTOM)
+                setDrawGridLines(false)
+                setDrawAxisLine(true)
+                setLabelCount(3, true)
+                textSize = 15f
+                granularity = 1f
+                textColor = Color.BLACK
+                valueFormatter = object : ValueFormatter() {
+                    override fun getAxisLabel(value: Float, axis: AxisBase): String {
+                        return xAxisLables.get(value.toInt())
+                    }
+                }
+            }
+            axisLeft.apply {
+                setDrawLabels(true)
+                setDrawGridLines(true)
+                setDrawAxisLine(true)
+                setDrawZeroLine(true)
+                setZeroLineWidth(1f)
+                granularity = 1f
+                axisMinimum = 0f
+                textSize = 12f
+
+            }
+            axisRight.apply {
+                setDrawLabels(false)
+                setDrawGridLines(false)
+                setDrawAxisLine(false)
+            }
+            setDrawValueAboveBar(false)
+            description.isEnabled = true
+            description.text = "Card forecast"
+            legend.isEnabled = false
+            setTouchEnabled(false)
+            setScaleEnabled(false)
+            setFitBars(true)
+        }
 
         // Observer the livedata
         lifecycleScope.launch {
@@ -111,6 +160,7 @@ class StatisticsFragment : Fragment() {
                 binding.upcomingWeeksNumber.text = nDueCardsMoreWeek.size.toString()
 
                 updatePieChart(cards)
+                updateBarChart(cards)
             }
         }
         return binding.root
@@ -133,29 +183,32 @@ class StatisticsFragment : Fragment() {
         val entryDoubtCards = PieEntry(cards.filter { it.quality == 3 }.size.toFloat(), "Doubt")
         val entryDifficultCards = PieEntry(cards.filter { it.quality == 0 }.size.toFloat(), "Difficult")
 
-        var entries: MutableList<PieEntry> = mutableListOf()
+        val entries: MutableList<PieEntry> = mutableListOf()
 
         entries.add(entryGoodCards)
         entries.add(entryDoubtCards)
         entries.add(entryDifficultCards)
 
         val dataSet = PieDataSet(entries, "Card performance")
+        dataSet.setValueTextColors(mutableListOf(Color.WHITE))
         val data = PieData(dataSet)
         pieChart.data = data
-        pieChart.invalidate()
-
         dataSet.colors = listOf(
             Color.parseColor("#99CC00"), // green
             Color.parseColor("#33B5E5"), // blue
             Color.parseColor("#FF4444") // orange
         )
 
+        dataSet.valueTextSize = 12f
+
         dataSet.sliceSpace = 2f
         dataSet.selectionShift = 5f
         dataSet.setDrawValues(true)
+
+        pieChart.invalidate()
     }
 
-    private fun updateBarChart() {
+    private fun updateBarChart(cards: List<Card>) {
 
         // Due today
         val nDueCardsToday = cards.filter {
@@ -172,14 +225,32 @@ class StatisticsFragment : Fragment() {
             LocalDateTime.parse(it.nextPracticeDate).isAfter(LocalDateTime.now().plusDays(2))
         }
 
-        val entryDueToday = BarEntry(0.toFloat(), nDueCardsToday.size.toFloat())
-        val entryDueTomorrow = BarEntry(1.toFloat(), nDueCardsTomorrow.size.toFloat())
-        val entryDueDayAfterTomorrow = BarEntry(2.toFloat(), nDueCardsDayAfterTomorrow.size.toFloat())
+        val entryDueToday = BarEntry(0f, nDueCardsToday.size.toFloat(), "Today")
+        val entryDueTomorrow = BarEntry(1f, nDueCardsTomorrow.size.toFloat(), "Tomorrow")
+        val entryDueDayAfterTomorrow = BarEntry(2f, nDueCardsDayAfterTomorrow.size.toFloat(), "Day after tomorrow")
 
-        var entries: MutableList<BarEntry> = mutableListOf()
+        barChart.xAxis.setDrawLabels(true)
+
+        // Create entries
+        val entries: MutableList<BarEntry> = mutableListOf()
         entries.add(entryDueToday)
         entries.add(entryDueTomorrow)
         entries.add(entryDueDayAfterTomorrow)
+
+        // Create entries
+        val barDataSet = BarDataSet(entries, "Data Set Label")
+        barDataSet.setValueTextColors(mutableListOf(Color.WHITE))
+        barDataSet.valueTextSize = 12f
+        barDataSet.setDrawValues(true)
+
+        // Set the colors for the bars
+        barDataSet.colors = listOf(Color.RED, Color.BLUE, Color.GREEN)
+
+        // Create a BarData object and add the dataset to it
+        val barData = BarData(barDataSet)
+
+        barChart.data = barData
+        barChart.invalidate()
     }
 
 }
