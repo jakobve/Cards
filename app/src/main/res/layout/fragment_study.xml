@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="card"
-            type="es.uam.eps.dadm.cards.Model.Card" />
+            type="es.uam.eps.dadm.cards.model.Card" />
     </data>
 
     <RelativeLayout
@@ -36,7 +36,7 @@
                 android:layout_height="1dp"
                 android:background="@color/grey"/>
 
-            <es.uam.eps.dadm.cards.BoardView
+            <es.uam.eps.dadm.cards.ui.BoardView
                 android:id="@+id/board_view"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"

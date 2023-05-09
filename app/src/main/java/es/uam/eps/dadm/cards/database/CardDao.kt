@@ -2,9 +2,9 @@ package es.uam.eps.dadm.cards.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import es.uam.eps.dadm.cards.Model.Card
-import es.uam.eps.dadm.cards.Deck
-import es.uam.eps.dadm.cards.DeckWithCards
+import es.uam.eps.dadm.cards.model.Card
+import es.uam.eps.dadm.cards.model.Deck
+import es.uam.eps.dadm.cards.model.DeckWithCards
 
 @Dao
 interface CardDao {

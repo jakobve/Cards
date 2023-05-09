@@ -5,7 +5,7 @@
     <data>
         <variable
             name="card"
-            type="es.uam.eps.dadm.cards.Model.Card" />
+            type="es.uam.eps.dadm.cards.model.Card" />
     </data>
 
     <LinearLayout
@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:orientation="vertical"
-        tools:context=".CardEditFragment">
+        tools:context=".ui.fragment.CardEditFragment">
 
         <TextView
             android:id="@+id/edit_card_date_text"

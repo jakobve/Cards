@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/titleFragment"
-        android:name="es.uam.eps.dadm.cards.TitleFragment"
+        android:name="es.uam.eps.dadm.cards.ui.fragment.TitleFragment"
         android:label="TitleFragment"
         tools:layout="@layout/fragment_title">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/studyFragment"
-        android:name="es.uam.eps.dadm.cards.StudyFragment"
+        android:name="es.uam.eps.dadm.cards.ui.fragment.StudyFragment"
         android:label="StudyFragment"
         tools:layout="@layout/fragment_study">
         <argument
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/cardListFragment"
-        android:name="es.uam.eps.dadm.cards.CardListFragment"
+        android:name="es.uam.eps.dadm.cards.ui.fragment.CardListFragment"
         android:label="CardListFragment"
         tools:layout="@layout/fragment_card_list">
         <action
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/cardEditFragment"
-        android:name="es.uam.eps.dadm.cards.CardEditFragment"
+        android:name="es.uam.eps.dadm.cards.ui.fragment.CardEditFragment"
         android:label="CardEditFragment"
         tools:layout="@layout/fragment_card_edit">
         <action
@@ -66,12 +66,12 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="es.uam.eps.dadm.cards.AboutFragment"
+        android:name="es.uam.eps.dadm.cards.ui.fragment.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about"/>
     <fragment
         android:id="@+id/deckListFragment"
-        android:name="es.uam.eps.dadm.cards.DeckListFragment"
+        android:name="es.uam.eps.dadm.cards.ui.fragment.DeckListFragment"
         android:label="DeckListFragment"
         tools:layout="@layout/fragment_deck_list">
         <action
@@ -84,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/deckEditFragment"
-        android:name="es.uam.eps.dadm.cards.DeckEditFragment"
+        android:name="es.uam.eps.dadm.cards.ui.fragment.DeckEditFragment"
         android:label="DeckEditFragment"
         tools:layout="@layout/fragment_deck_edit">
         <action
@@ -98,7 +98,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="es.uam.eps.dadm.cards.SignUpFragment"
+        android:name="es.uam.eps.dadm.cards.ui.fragment.SignUpFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action
@@ -111,7 +111,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="es.uam.eps.dadm.cards.LoginFragment"
+        android:name="es.uam.eps.dadm.cards.ui.fragment.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -124,12 +124,12 @@
     </fragment>
     <activity
         android:id="@+id/tutorialActivity"
-        android:name="es.uam.eps.dadm.cards.TutorialActivity"
+        android:name="es.uam.eps.dadm.cards.ui.activity.TutorialActivity"
         android:label="TutorialActivity"
         tools:layout="@layout/activity_tutorial"/>
     <activity
         android:id="@+id/statisticsActivity"
-        android:name="es.uam.eps.dadm.cards.StatisticsActivity"
+        android:name="es.uam.eps.dadm.cards.ui.activity.StatisticsActivity"
         android:label="StatisticsActivity"
         tools:layout="@layout/activity_statistics"/>
 </navigation>

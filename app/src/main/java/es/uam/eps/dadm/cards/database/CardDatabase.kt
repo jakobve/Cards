@@ -2,8 +2,8 @@ package es.uam.eps.dadm.cards.database
 
 import android.content.Context
 import androidx.room.*
-import es.uam.eps.dadm.cards.Model.Card
-import es.uam.eps.dadm.cards.Deck
+import es.uam.eps.dadm.cards.model.Card
+import es.uam.eps.dadm.cards.model.Deck
 
 @Database(entities = [Card::class, Deck::class], version = 4, exportSchema = false)
 abstract class CardDatabase: RoomDatabase() {

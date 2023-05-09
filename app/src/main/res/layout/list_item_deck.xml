@@ -7,7 +7,7 @@
     <data>
         <variable
             name="deck"
-            type="es.uam.eps.dadm.cards.Deck" />
+            type="es.uam.eps.dadm.cards.model.Deck" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
