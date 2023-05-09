@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import es.uam.eps.dadm.cards.ui.fragment.CardsApplication
 import es.uam.eps.dadm.cards.ui.activity.SettingsActivity
 import es.uam.eps.dadm.cards.model.Card
+import timber.log.Timber
 import java.time.LocalDateTime
 import java.util.concurrent.Executors
 
@@ -20,21 +21,31 @@ class StudyViewModel(application: Application): AndroidViewModel(application) {
 
 
     var cards: LiveData<List<Card>> = deckId.switchMap {
+        Timber.i("Switchmap")
         if(it != -1L) {
+            Timber.i("Specific deck")
             CardsApplication.getCardsOfDeck(context, it)
         } else {
+            Timber.i("All decks")
             CardsApplication.getCards(context)
         }
     }
 
+
     var dueCard: LiveData<Card?> = cards.map {
-        try {
-            it.filter { card -> card.isDue(LocalDateTime.now()) }.run {
-                if(any() && (repetitions.value!! <= maxRepetitions))
-                    random()
-                else null
+        if(repetitions.value!! <= maxRepetitions) {
+            try {
+                it.filter { card -> card.isDue(LocalDateTime.now()) }.run {
+                    if(any()) {
+                        Timber.i("Studymodel_if")
+                        random()
+                    } else
+                        null
+                }
+            } catch (e: Exception) {
+                null
             }
-        } catch (e: Exception) {
+        } else {
             null
         }
     }
@@ -42,8 +53,6 @@ class StudyViewModel(application: Application): AndroidViewModel(application) {
     val nDueCards: LiveData<Int> = cards.map() {
         it.filter { card -> card.isDue((LocalDateTime.now())) }.size + 1
     }
-
-    private val _nRepetitions = MutableLiveData<Int>()
 
     init {
         repetitions.value = if(getLastStudySession().isBefore(LocalDateTime.now().minusDays(1))){

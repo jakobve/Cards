@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import es.uam.eps.dadm.cards.ui.fragment.CardListFragmentArgs
+import androidx.lifecycle.lifecycleScope
 import es.uam.eps.dadm.cards.R
 import es.uam.eps.dadm.cards.model.Card
 import es.uam.eps.dadm.cards.databinding.FragmentStudyBinding
 import es.uam.eps.dadm.cards.viewModel.StudyViewModel
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class StudyFragment : Fragment() {
@@ -31,7 +32,8 @@ class StudyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate<FragmentStudyBinding>(
+        Timber.i("Create studyfragment")
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_study,
             container,
@@ -55,19 +57,20 @@ class StudyFragment : Fragment() {
         val args = CardListFragmentArgs.fromBundle(requireArguments())
         val deckId = args.deckId
 
-        viewModel.loadDeckId(deckId)
+        lifecycleScope.launch {
+            viewModel.loadDeckId(deckId)
 
-        viewModel.dueCard.observe(viewLifecycleOwner) {
+            viewModel.dueCard.observe(viewLifecycleOwner) {
+                Timber.i("Studyyyy")
+                card = it
+                binding.card = card
 
-            card = it
-            binding.card = card
+                binding.invalidateAll()
+            }
 
-            binding.invalidateAll()
-        }
-
-        viewModel.nDueCards.observe(viewLifecycleOwner) {
-            binding.dueCardsInfoChip.text = "$it cards remaining"
-            binding.invalidateAll()
+            viewModel.nDueCards.observe(viewLifecycleOwner) {
+                binding.dueCardsInfoChip.text = "$it cards remaining"
+            }
         }
 
         binding.answerButton.setOnClickListener {
@@ -80,12 +83,12 @@ class StudyFragment : Fragment() {
             doubtQualityButton.setOnClickListener(listener)
             difficultQualityButton.setOnClickListener(listener)
         }
-
         return binding.root
     }
 
     override fun onStart() {
         // Retrieve arguments needed
+        super.onStart()
         val args = CardListFragmentArgs.fromBundle(requireArguments())
         val deckId = args.deckId
 
@@ -99,10 +102,6 @@ class StudyFragment : Fragment() {
             binding.separatorViewBoard1.isGone = true
             binding.separatorViewBoard2.isGone = true
         }
-
-        viewModel.loadDeckId(deckId)
-
-        super.onStart()
     }
 
     override fun onStop() {
