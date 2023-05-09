@@ -17,6 +17,10 @@
             android:exported="false"
             android:label="@string/title_activity_settings" />
         <activity
+            android:name=".TutorialActivity"
+            android:exported="false"
+            android:label="@string/tutorial_nav_menu_title" />
+        <activity
             android:name=".TitleActivity"
             android:exported="true">
             <intent-filter>

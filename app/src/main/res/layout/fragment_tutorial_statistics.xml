@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".TutorialDecksFragment">
+    tools:context=".TutorialStatisticsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,31 +13,13 @@
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceHeadline4"
             android:layout_marginVertical="10dp"
-            android:text="@string/tutorial_decks_screen"/>
+            android:text="@string/tutorial_statistics_title"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceBody2"
-            android:text="@string/tutorial_deck_screen_description"/>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceHeadline4"
-            android:layout_marginVertical="10dp"
-            android:text="@string/tutorial_review_deck_title"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:text="@string/tutorial_review_deck_desc"/>
+            android:text="@string/tutorial_statistics_desc"/>
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
@@ -45,5 +27,6 @@
             android:layout_marginTop="10dp"/>
 
     </LinearLayout>
+
 
 </layout>

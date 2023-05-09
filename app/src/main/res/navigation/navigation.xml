@@ -102,11 +102,6 @@
             app:argType="long" />
     </fragment>
     <fragment
-        android:id="@+id/tutorialFragment"
-        android:name="es.uam.eps.dadm.cards.TutorialFragment"
-        android:label="TutorialFragment"
-        tools:layout="@layout/fragment_tutorial"/>
-    <fragment
         android:id="@+id/signUpFragment"
         android:name="es.uam.eps.dadm.cards.SignUpFragment"
         android:label="SignUpFragment"
@@ -132,4 +127,8 @@
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
+    <activity
+        android:id="@+id/tutorialActivity"
+        android:name="es.uam.eps.dadm.cards.TutorialActivity"
+        android:label="TutorialActivity" />
 </navigation>
