@@ -70,11 +70,6 @@
         android:label="fragment_about"
         tools:layout="@layout/fragment_about"/>
     <fragment
-        android:id="@+id/statisticsFragment"
-        android:name="es.uam.eps.dadm.cards.StatisticsFragment"
-        android:label="fragment_statistics"
-        tools:layout="@layout/fragment_statistics" />
-    <fragment
         android:id="@+id/deckListFragment"
         android:name="es.uam.eps.dadm.cards.DeckListFragment"
         android:label="DeckListFragment"
