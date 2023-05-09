@@ -16,6 +16,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
+import es.uam.eps.dadm.cards.Model.Card
 import es.uam.eps.dadm.cards.databinding.FragmentStatisticsForecastBinding
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
@@ -83,8 +84,7 @@ class StatisticsForecastFragment : Fragment() {
                 setDrawAxisLine(false)
             }
             setDrawValueAboveBar(false)
-            description.isEnabled = true
-            description.text = "Card forecast"
+            description.isEnabled = false
             legend.isEnabled = false
             setTouchEnabled(false)
             setScaleEnabled(false)
@@ -96,6 +96,13 @@ class StatisticsForecastFragment : Fragment() {
                 decks = it.map { it.deck }
                 cards = it.flatMap { it.cards }
 
+                // Due today
+
+                //Due tomorrow
+
+                // Due day after tomorrow
+
+
                 // Due this week
                 val nDueCardsWeek = cards.filter {
                     LocalDateTime.parse(it.nextPracticeDate).isBefore(LocalDateTime.now().plusWeeks(1))
@@ -104,7 +111,7 @@ class StatisticsForecastFragment : Fragment() {
 
                 // Due more than one week
                 val nDueCardsMoreWeek = cards.filter {
-                    LocalDateTime.parse(it.nextPracticeDate).isAfter(LocalDateTime.now().plusWeeks(1))
+                    LocalDateTime.parse(it.nextPracticeDate).isBefore(LocalDateTime.now().plusWeeks(1))
                 }
                 binding.upcomingWeeksNumber.text = nDueCardsMoreWeek.size.toString()
 
@@ -121,20 +128,23 @@ class StatisticsForecastFragment : Fragment() {
         val nDueCardsToday = cards.filter {
             LocalDateTime.parse(it.nextPracticeDate).isBefore(LocalDateTime.now())
         }
+        binding.forecastStatisticsTodayNumber.text = nDueCardsToday.size.toString()
 
         // Due tomorrow
         val nDueCardsTomorrow = cards.filter {
             LocalDateTime.parse(it.nextPracticeDate).isBefore(LocalDateTime.now().plusDays(1))
         }
+        binding.forecastStatisticsTomorrowNumber.text = nDueCardsTomorrow.size.toString()
 
         // Due day after tomorrow
         val nDueCardsDayAfterTomorrow = cards.filter {
             LocalDateTime.parse(it.nextPracticeDate).isAfter(LocalDateTime.now().plusDays(2))
         }
+        binding.forecastStatisticsDayAfterTomorrowNumber.text = nDueCardsDayAfterTomorrow.size.toString()
 
-        val entryDueToday = BarEntry(0f, nDueCardsToday.size.toFloat(), "Today")
-        val entryDueTomorrow = BarEntry(1f, nDueCardsTomorrow.size.toFloat(), "Tomorrow")
-        val entryDueDayAfterTomorrow = BarEntry(2f, nDueCardsDayAfterTomorrow.size.toFloat(), "Day after tomorrow")
+        val entryDueToday = BarEntry(0f, nDueCardsToday.size.toFloat())
+        val entryDueTomorrow = BarEntry(1f, nDueCardsTomorrow.size.toFloat())
+        val entryDueDayAfterTomorrow = BarEntry(2f, nDueCardsDayAfterTomorrow.size.toFloat())
 
         barChart.xAxis.setDrawLabels(true)
 
@@ -151,7 +161,11 @@ class StatisticsForecastFragment : Fragment() {
         barDataSet.setDrawValues(true)
 
         // Set the colors for the bars
-        barDataSet.colors = listOf(Color.RED, Color.BLUE, Color.GREEN)
+        barDataSet.colors = listOf(
+            Color.parseColor("#578B8D"),
+            Color.parseColor("#677B8D"),
+            Color.parseColor("#4B4E6D")
+        )
 
         // Create a BarData object and add the dataset to it
         val barData = BarData(barDataSet)

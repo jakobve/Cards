@@ -3,6 +3,7 @@ package es.uam.eps.dadm.cards
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.google.firebase.database.FirebaseDatabase
+import es.uam.eps.dadm.cards.Model.Card
 import timber.log.Timber
 
 class DeckListViewModel(application: Application): AndroidViewModel(application) {

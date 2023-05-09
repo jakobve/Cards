@@ -3,6 +3,7 @@ package es.uam.eps.dadm.cards
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
+import es.uam.eps.dadm.cards.Model.Card
 import es.uam.eps.dadm.cards.database.CardDatabase
 import timber.log.Timber
 import java.util.concurrent.Executors

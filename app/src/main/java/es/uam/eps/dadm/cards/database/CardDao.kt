@@ -2,7 +2,7 @@ package es.uam.eps.dadm.cards.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import es.uam.eps.dadm.cards.Card
+import es.uam.eps.dadm.cards.Model.Card
 import es.uam.eps.dadm.cards.Deck
 import es.uam.eps.dadm.cards.DeckWithCards
 

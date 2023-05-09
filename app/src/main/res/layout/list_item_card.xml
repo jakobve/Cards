@@ -8,7 +8,7 @@
         <import type="android.view.View"/>
         <variable
             name="card"
-            type="es.uam.eps.dadm.cards.Card" />
+            type="es.uam.eps.dadm.cards.Model.Card" />
     </data>
     
     <com.google.android.material.card.MaterialCardView

@@ -13,6 +13,7 @@ import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import es.uam.eps.dadm.cards.Model.Card
 import es.uam.eps.dadm.cards.databinding.FragmentStatisticsUserBinding
 import kotlinx.coroutines.launch
 
@@ -56,7 +57,7 @@ class StatisticsUserFragment : Fragment() {
                 cards = it.flatMap { it.cards }
 
                 // Number of reviews today
-                binding.userStatisticsNumberOfReviewsNumber.text = cards.filter { it.answered }.size.toString()
+                binding.userStatisticsNumberOfReviewsNumber.text = viewModel.getRepetitionsToday().toString()
 
                 // Average quality of cards
                 val avgCardQuality = cards.sumOf { it.quality }.div(cards.size)

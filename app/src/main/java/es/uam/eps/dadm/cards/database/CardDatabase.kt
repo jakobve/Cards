@@ -2,7 +2,7 @@ package es.uam.eps.dadm.cards.database
 
 import android.content.Context
 import androidx.room.*
-import es.uam.eps.dadm.cards.Card
+import es.uam.eps.dadm.cards.Model.Card
 import es.uam.eps.dadm.cards.Deck
 
 @Database(entities = [Card::class, Deck::class], version = 4, exportSchema = false)

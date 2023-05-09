@@ -141,41 +141,48 @@
         siguientes.
     </string>
     <string name="statistics_upcoming_next_weeks_text">
-        Las tarjetas que tienes que revisar en las próximas semanas
+        Diferentes tarjetas que tienes que revisar en las próximas semanas
     </string>
 
     <string name="statistics_upcoming_next_week_text">
-        Las tarjetas que tienes que revisar en este semana
+        Diferentes tarjetas que tienes que revisar en este semana
     </string>
 
     <string name="card_details_easiness">%.2f</string>
     <string name="tutorial_nav_menu_title">Tutorial</string>
-    <string name="generate_test_deck_button">Generate test deck</string>
+    <string name="generate_test_deck_button">Generar baraja</string>
     <string name="title_fragment_description">Title Fragment</string>
     <string name="settings_menu_title">Settings</string>
-    <string name="logout_menu_title">Logout</string>
+    <string name="logout_menu_title">ajustes</string>
 
     <!-- Preference Titles -->
-    <string name="decks_header">Decks</string>
+    <string name="decks_header">Barajas</string>
 
     <!-- Maximum number of cards Preferences -->
-    <string name="max_number_cards">Maximum number of cards</string>
+    <string name="max_number_cards">Número máximo de tarjetas</string>
 
     <!-- Board Preferences -->
-    <string name="board_title">Show board</string>
-    <string name="board_summary_on">Board available</string>
-    <string name="board_summary_off">Board unavailable</string>
+    <string name="board_title">Mostrar tabla</string>
+    <string name="board_summary_on">Tabla disbonible</string>
+    <string name="board_summary_off">Table indisponible</string>
 
     <!-- Title activity settings -->
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">Ajustes</string>
     <string name="repetision_text_cards_list">Repetision</string>
-    <string name="easiness_text_cards_list">Easiness</string>
-    <string name="username">Your username</string>
-    <string name="email_address">Your email address</string>
-    <string name="password">Your password</string>
-    <string name="signup">Sign-up</string>
+    <string name="easiness_text_cards_list">Nivel</string>
+    <string name="username">Nombre usario</string>
+    <string name="email_address">Correo electronico</string>
+    <string name="password">Contraseña</string>
+    <string name="signup">Registrar</string>
     <string name="log_in">Log In</string>
-    <string name="answer_button_text">Check answer</string>
-    <string name="congrats_n_you_have_reviewed_all_cards_for_today">Congrats!! \nYou have reviewed all cards for today.</string>
+    <string name="answer_button_text">Comprobar respuesta</string>
+    <string name="congrats_n_you_have_reviewed_all_cards_for_today">¡¡Felicidades!! \n Has revisado todas las tarjetas de hoy.</string>
+    <string name="cards_to_review_in_the_next_days">Tarjetas para revisar en los próximos días</string>
+    <string name="number_of_cards_you_should_review_the_day_after_tomorrow">Número de tarjetas que debe revisar pasado mañana</string>
+    <string name="day_after_tomorrow">Pasado mañana</string>
+    <string name="today">Hoy</string>
+    <string name="number_of_cards_you_should_review_today">Tarjetas para revisar hoy</string>
+    <string name="tomorrow">Mañana</string>
+    <string name="number_of_cards_you_should_review_tomorrow">Tarjetas para revisar mañna</string>
 
 </resources>

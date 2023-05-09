@@ -1,4 +1,4 @@
-package es.uam.eps.dadm.cards
+package es.uam.eps.dadm.cards.Model
 
 import androidx.room.ColumnInfo
 import java.lang.Double.max

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import es.uam.eps.dadm.cards.Model.Card
 import es.uam.eps.dadm.cards.databinding.FragmentStatisticsGeneralBinding
 import kotlinx.coroutines.launch
 

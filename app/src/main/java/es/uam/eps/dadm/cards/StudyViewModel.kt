@@ -2,6 +2,7 @@ package es.uam.eps.dadm.cards
 
 import android.app.Application
 import androidx.lifecycle.*
+import es.uam.eps.dadm.cards.Model.Card
 import java.time.LocalDateTime
 import java.util.concurrent.Executors
 import kotlin.math.max

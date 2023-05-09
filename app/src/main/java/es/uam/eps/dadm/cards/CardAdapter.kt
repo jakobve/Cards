@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import es.uam.eps.dadm.cards.Model.Card
 import es.uam.eps.dadm.cards.databinding.ListItemCardBinding
 
 class CardAdapter : RecyclerView.Adapter<CardAdapter.CardHolder>() {

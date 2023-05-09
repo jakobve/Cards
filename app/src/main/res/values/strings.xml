@@ -73,10 +73,10 @@
     <string name="card_details_repetitions">Repetitions:</string>
     <string name="card_details_quality">Easiness:</string>
     <string name="statistics_upcoming_next_week_desc">
-        Number of cards you still have to review this week
+        Different cards you still have to review this week
     </string>
     <string name="statistics_upcoming_next_weeks_desc">
-        Number of cards you\'ll review in the next weeks
+        Different cards you\'ll review in the next weeks
     </string>
     <string name="tutorial_title">Tutorial</string>
     <string name="tutorial_subheading">
@@ -175,4 +175,11 @@
     <string name="congrats_n_you_have_reviewed_all_cards_for_today">Congrats!! \nYou have reviewed all cards for today.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cards_to_review_in_the_next_days">Cards to review in the next days</string>
+    <string name="number_of_cards_you_should_review_the_day_after_tomorrow">Number of cards you should review the day after tomorrow</string>
+    <string name="day_after_tomorrow">Day after tomorrow</string>
+    <string name="today">Today</string>
+    <string name="number_of_cards_you_should_review_today">Number of cards you should review today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="number_of_cards_you_should_review_tomorrow">Number of cards you should review tomorrow</string>
 </resources>

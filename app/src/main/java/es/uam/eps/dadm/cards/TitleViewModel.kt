@@ -6,6 +6,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import es.uam.eps.dadm.cards.Model.Card
 import timber.log.Timber
 class TitleViewModel(application: Application): AndroidViewModel(application) {
 

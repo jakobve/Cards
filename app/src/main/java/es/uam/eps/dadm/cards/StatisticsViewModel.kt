@@ -11,4 +11,7 @@ class StatisticsViewModel(application: Application): AndroidViewModel(applicatio
 
     var decksWithCards: LiveData<List<DeckWithCards>> = CardsApplication.getDecksWithCardsForUser(context, userId!!)
 
+    fun getRepetitionsToday(): Int {
+        return SettingsActivity.getRepetitions(context)
+    }
 }

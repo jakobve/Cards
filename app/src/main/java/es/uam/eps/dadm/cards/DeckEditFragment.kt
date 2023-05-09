@@ -11,6 +11,7 @@ import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import es.uam.eps.dadm.cards.Model.Card
 import es.uam.eps.dadm.cards.databinding.FragmentDeckEditBinding
 import timber.log.Timber
 

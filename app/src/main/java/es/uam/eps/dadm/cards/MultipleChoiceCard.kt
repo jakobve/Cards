@@ -1,5 +1,6 @@
 package es.uam.eps.dadm.cards
 
+import es.uam.eps.dadm.cards.Model.Card
 import java.time.LocalDateTime
 import java.util.*
 

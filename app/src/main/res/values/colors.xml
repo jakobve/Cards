@@ -13,5 +13,8 @@
     <color name="holo_red_light">#FF4444</color>
     <color name="holo_blue_light">#33B5E5</color>
     <color name="holo_green_light">#99CC00</color>
+    <color name="forecast_today">#578B8D</color>
+    <color name="forecast_tomorrow">#677B8D</color>
+    <color name="forecast_day_after_tomorrow">#4B4E6D</color>
 
 </resources>

@@ -21,6 +21,171 @@
                 android:layout_marginVertical="10dp"
                 android:text="@string/statistics_forecast_title"/>
 
+            <TextView
+                android:id="@+id/upcoming_days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:text="@string/cards_to_review_in_the_next_days"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:paddingBottom="30dp"/>
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:id="@+id/user_statistics_good_cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <View
+                    android:id="@+id/green_square"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@color/forecast_today"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"/>
+
+                <TextView
+                    android:id="@+id/forecast_statistics_today_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:layout_toEndOf="@id/green_square"
+                    android:text="@string/today" />
+
+                <TextView
+                    android:id="@+id/forecast_statistics_today_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/forecast_statistics_today_text"
+                    android:layout_toEndOf="@id/green_square"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/grey"
+                    android:text="@string/number_of_cards_you_should_review_today"/>
+
+                <TextView
+                    android:id="@+id/forecast_statistics_today_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    tools:text="X"
+                    tools:ignore="RelativeOverlap" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:id="@+id/user_statistics_doubt_cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <View
+                    android:id="@+id/blue_square"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@color/forecast_tomorrow"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"/>
+
+                <TextView
+                    android:id="@+id/forecast_statistics_tomorrow_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/blue_square"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:text="@string/tomorrow" />
+
+                <TextView
+                    android:id="@+id/forecast_statistics_tomorrow_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/forecast_statistics_tomorrow_text"
+                    android:layout_toEndOf="@id/blue_square"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/grey"
+                    android:text="@string/number_of_cards_you_should_review_tomorrow"/>
+
+                <TextView
+                    android:id="@+id/forecast_statistics_tomorrow_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    tools:text="X"
+                    tools:ignore="RelativeOverlap" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:id="@+id/forecast_statistics_dayAfterTomorrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <View
+                    android:id="@+id/orange_square"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@color/forecast_day_after_tomorrow"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"/>
+
+                <TextView
+                    android:id="@+id/forecast_statistics_dayAfterTomorrow_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/orange_square"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:text="@string/day_after_tomorrow" />
+
+                <TextView
+                    android:id="@+id/forecast_statistics_dayAfterTomorrow_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/forecast_statistics_dayAfterTomorrow_text"
+                    android:layout_toEndOf="@id/orange_square"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/grey"
+                    android:text="@string/number_of_cards_you_should_review_the_day_after_tomorrow"/>
+
+                <TextView
+                    android:id="@+id/forecast_statistics_dayAfterTomorrow_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    tools:text="X"
+                    tools:ignore="RelativeOverlap" />
+
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,6 +218,10 @@
                     tools:ignore="RelativeOverlap" />
 
             </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -87,15 +256,9 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/barChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"/>
-            </RelativeLayout>
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
