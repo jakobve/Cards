@@ -130,5 +130,11 @@
     <activity
         android:id="@+id/tutorialActivity"
         android:name="es.uam.eps.dadm.cards.TutorialActivity"
-        android:label="TutorialActivity" />
+        android:label="TutorialActivity"
+        tools:layout="@layout/activity_tutorial"/>
+    <activity
+        android:id="@+id/statisticsActivity"
+        android:name="es.uam.eps.dadm.cards.StatisticsActivity"
+        android:label="StatisticsActivity"
+        tools:layout="@layout/activity_statistics"/>
 </navigation>

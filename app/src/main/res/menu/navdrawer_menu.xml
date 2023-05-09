@@ -12,7 +12,7 @@
         android:title="@string/study_nav_menu_title"/>
 
     <item
-        android:id="@id/statisticsFragment"
+        android:id="@id/statisticsActivity"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_assessment_24"
         android:title="@string/statistics_nav_menu_title"/>

@@ -21,6 +21,10 @@
             android:exported="false"
             android:label="@string/tutorial_nav_menu_title" />
         <activity
+            android:name=".StatisticsActivity"
+            android:exported="false"
+            android:label="@string/statistics_nav_menu_title" />
+        <activity
             android:name=".TitleActivity"
             android:exported="true">
             <intent-filter>
