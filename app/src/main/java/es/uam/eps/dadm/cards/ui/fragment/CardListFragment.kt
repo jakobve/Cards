@@ -73,18 +73,6 @@ class CardListFragment : Fragment() {
                 )
         }
 
-        binding.radioButtonGroup.setOnCheckedChangeListener { _, checkedId ->
-            when(checkedId) {
-                binding.radioEasiness.id -> {
-                    adapter.data = viewModel.cards.value!!.sortedByDescending { it.easiness }
-                    adapter.notifyDataSetChanged()
-                }
-                binding.radioRepetitions.id -> {
-                    adapter.data = viewModel.cards.value!!.sortedByDescending { it.repetitions }
-                    adapter.notifyDataSetChanged()
-                }
-            }
-        }
         return binding.root
     }
 
@@ -100,7 +88,6 @@ class CardListFragment : Fragment() {
     }
      */
 
-    // TODO
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.settings -> {

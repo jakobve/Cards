@@ -8,115 +8,123 @@
             type="es.uam.eps.dadm.cards.model.Card" />
     </data>
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        tools:context=".ui.fragment.CardEditFragment">
-
-        <TextView
-            android:id="@+id/edit_card_date_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            android:text="@{card.date.substring(0,10)}"
-            tools:text="Date"/>
-
-        <TextView
-            android:id="@+id/edit_card_question_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            android:text="@string/question_text" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/edit_question_placeholder"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginVertical="10dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_card_edit_question_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{card.question}"
-                tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp">
 
         <LinearLayout
-            android:id="@+id/normal_card_edit_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            tools:context=".ui.fragment.CardEditFragment">
 
             <TextView
-                android:id="@+id/normal_edit_card_answer_text"
+                android:id="@+id/edit_card_date_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:text="@{card.date.substring(0,10)}"
+                tools:text="Date"/>
+
+            <TextView
+                android:id="@+id/edit_card_question_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?attr/textAppearanceHeadline6"
-                android:layout_marginTop="10dp"
-                android:text="@string/answer_text"/>
+                android:text="@string/question_text" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/edit_answer_placeholder"
+                android:hint="@string/edit_question_placeholder"
                 android:layout_marginHorizontal="50dp"
                 android:layout_marginVertical="10dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_card_edit_answer_text"
+                    android:id="@+id/edit_card_edit_question_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{card.answer}"
+                    android:text="@{card.question}"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:id="@+id/normal_card_edit_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/normal_edit_card_answer_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/answer_text"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_answer_placeholder"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginVertical="10dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_card_edit_answer_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{card.answer}"
+                        tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/card_edit_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/edit_card_cancel_button"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey"
+                    android:text="@string/cancel_button" />
+
+                <Button
+                    android:id="@+id/edit_card_accept_button"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="@string/accept_button"
+                    android:textColor="@color/accept_green_button_color" />
+
+                <Button
+                    android:id="@+id/edit_card_delete_button"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/delete_red"
+                    android:enabled="false"
+                    android:text="@string/delete_button"
+                    />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/card_edit_buttons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/edit_card_cancel_button"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/grey"
-                android:text="@string/cancel_button" />
-
-            <Button
-                android:id="@+id/edit_card_accept_button"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="@string/accept_button"
-                android:textColor="@color/accept_green_button_color" />
-
-            <Button
-                android:id="@+id/edit_card_delete_button"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/delete_red"
-                android:enabled="false"
-                android:text="@string/delete_button"
-                />
-
-        </com.google.android.material.button.MaterialButtonToggleGroup>
-
-    </LinearLayout>
+    </ScrollView>
 
 </layout>

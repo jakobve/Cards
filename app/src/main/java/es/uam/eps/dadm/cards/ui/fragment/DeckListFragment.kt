@@ -47,12 +47,7 @@ class DeckListFragment : Fragment() {
         }
         
         binding.newDeckFab.setOnClickListener { view ->
-            /*
-            val deck = decks?.maxOf { id }?.plus(1)?.let { Deck(it.toLong(), "") }
-            if (deck != null) {
-                deckListViewModel.addDeck(deck)
-            }
-             */
+
            view.findNavController()
                .navigate(
                    DeckListFragmentDirections.actionDeckListFragmentToDeckEditFragment(-1)
