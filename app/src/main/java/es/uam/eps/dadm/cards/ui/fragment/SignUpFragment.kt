@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import es.uam.eps.dadm.cards.ui.fragment.SignUpFragmentDirections
 import es.uam.eps.dadm.cards.databinding.FragmentSignUpBinding
 import es.uam.eps.dadm.cards.state.AuthenticationState
 import es.uam.eps.dadm.cards.viewModel.SignUpViewModel

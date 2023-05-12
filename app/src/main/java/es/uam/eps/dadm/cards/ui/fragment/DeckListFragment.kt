@@ -1,5 +1,6 @@
 package es.uam.eps.dadm.cards.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import es.uam.eps.dadm.cards.ui.fragment.DeckListFragmentDirections
 import es.uam.eps.dadm.cards.R
 import es.uam.eps.dadm.cards.databinding.FragmentDeckListBinding
 import es.uam.eps.dadm.cards.ui.adapter.DeckAdapter
@@ -23,6 +23,7 @@ class DeckListFragment : Fragment() {
         ViewModelProvider(this)[DeckListViewModel::class.java]
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

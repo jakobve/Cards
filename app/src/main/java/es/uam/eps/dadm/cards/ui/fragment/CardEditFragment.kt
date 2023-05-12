@@ -11,8 +11,6 @@ import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import es.uam.eps.dadm.cards.ui.fragment.CardEditFragmentArgs
-import es.uam.eps.dadm.cards.ui.fragment.CardEditFragmentDirections
 import es.uam.eps.dadm.cards.R
 import es.uam.eps.dadm.cards.model.Card
 import es.uam.eps.dadm.cards.databinding.FragmentCardEditBinding
@@ -71,7 +69,7 @@ class CardEditFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         Timber.i("Start")
-        // TODO: Check if its ok to access the viewmodel here
+
         if(viewModel.card.value?.question == "" || viewModel.card.value?.answer == "") {
             binding.editCardDeleteButton.isGone = true
         }

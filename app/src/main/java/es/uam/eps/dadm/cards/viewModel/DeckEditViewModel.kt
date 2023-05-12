@@ -1,5 +1,6 @@
 package es.uam.eps.dadm.cards.viewModel
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.*
 import es.uam.eps.dadm.cards.ui.fragment.CardsApplication
@@ -8,13 +9,14 @@ import es.uam.eps.dadm.cards.ui.activity.SettingsActivity
 import es.uam.eps.dadm.cards.model.Deck
 
 
+@SuppressLint("StaticFieldLeak")
 class DeckEditViewModel(application: Application): AndroidViewModel(application) {
 
     private val context = getApplication<Application>().applicationContext
 
     private val deckId = MutableLiveData<Long>()
 
-    val deckWithCards: LiveData<DeckWithCards> = deckId.switchMap() {
+    val deckWithCards: LiveData<DeckWithCards> = deckId.switchMap {
         CardsApplication.getDeckWithCards(context, it)
     }
 

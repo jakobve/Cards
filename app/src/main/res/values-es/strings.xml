@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
+
     <string name="app_name">Tarjetas</string>
 
     <string name="question_text">Pregunta</string>
@@ -9,12 +12,12 @@
     <string name="doubt_button_title">Duda</string>
     <string name="difficult_button_title">Difícil</string>
 
-    <string name="due_cards_info_text_view_message">Número de tarjetas restantes</string>
-    <string name="due_cards_format">%d tarjetas restantes</string>
+
+    <string name="due_cards_info_text_view_message" tools:ignore="PluralsCandidate">
+        %d tarjetas restantes
+    </string>
 
     <string name="subtitle_text">Tap para estudiar</string>
-
-    <string name="no_more_cards_toast_message">No hay mas tarjetas</string>
 
     <string name="review_cards_button">Revision de tarjetas</string>
 
@@ -32,7 +35,7 @@
     <string name="statistics_nav_menu_title">Estatisticas</string>
     <string name="about_nav_menu_title">Acera de</string>
 
-    <string name="about_app_verion">v 0.0.1</string>
+    <string name="about_app_version">v 0.0.1</string>
 
     <string name="about_description_heading">Descripcion</string>
     <string name="about_description">Con esta aplicación puedes repasar las flashcards</string>
@@ -84,10 +87,6 @@
     </string>
     <string name="statistics_upcoming_next_weeks_desc">
         Número de tarjetas que le quedan por revisar esta semana
-    </string>
-    <string name="tutorial_title">Tutorial</string>
-    <string name="tutorial_subheading">
-         En este tutorial te explicaremos las diferentes funcionalidades de la aplicación.
     </string>
     <string name="tutorial_decks_screen">Pantalla de barajas</string>
     <string name="tutorial_deck_screen_description">
@@ -168,7 +167,7 @@
 
     <!-- Title activity settings -->
     <string name="title_activity_settings">Ajustes</string>
-    <string name="repetision_text_cards_list">Repetision</string>
+    <string name="repetition_text_cards_list">Repetision</string>
     <string name="easiness_text_cards_list">Nivel</string>
     <string name="username">Nombre usario</string>
     <string name="email_address">Correo electronico</string>

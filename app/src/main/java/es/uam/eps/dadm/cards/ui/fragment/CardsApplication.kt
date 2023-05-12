@@ -12,7 +12,6 @@ import java.util.concurrent.Executors
 
 class CardsApplication: Application() {
 
-
     @Override
     override fun onCreate() {
         super.onCreate()
@@ -20,7 +19,7 @@ class CardsApplication: Application() {
     }
 
     companion object {
-        val executor = Executors.newSingleThreadExecutor()
+        private val executor = Executors.newSingleThreadExecutor()
         private var cardDatabase: CardDatabase? = null
         val cards: MutableList<Card> = mutableListOf()
 
@@ -60,17 +59,6 @@ class CardsApplication: Application() {
             return cardDatabase!!.cardDao.getCards()
         }
 
-        // TODO
-        /*
-        fun getNDueCards(context: Context): LiveData<Int> {
-            cardDatabase = initializeDatabase(context)
-            val cards = getCards(context)
-            Timber.i(cards.value?.size.toString())
-            return MutableLiveData(cards.value?.filter { it.isDue(LocalDateTime.now()) }?.size ?: 0)
-        }
-
-         */
-
         fun addDeck(context: Context, deck: Deck) {
             cardDatabase = initializeDatabase(context)
             executor.execute {
@@ -93,21 +81,6 @@ class CardsApplication: Application() {
                 cardDatabase!!.cardDao.deleteDeck(deckId)
             }
         }
-
-        // TODO
-        /*
-        fun getDecks(context: Context): LiveData<List<Deck>> {
-            cardDatabase = initializeDatabase(context)
-            return cardDatabase!!.cardDao.getDecks()
-        }
-
-         */
-
-        fun getDecksWithCards(context: Context): LiveData<List<DeckWithCards>> {
-            cardDatabase = initializeDatabase(context)
-            return cardDatabase!!.cardDao.getDecksWithCards()
-        }
-
         fun getDecksWithCardsForUser(context: Context, userId: String): LiveData<List<DeckWithCards>> {
             cardDatabase = initializeDatabase(context)
             return cardDatabase!!.cardDao.getDecksWithCardsForUser(userId)
@@ -129,38 +102,5 @@ class CardsApplication: Application() {
             cardDatabase = initializeDatabase(context)
             return cardDatabase!!.cardDao.getCardsOfDeck(deckId)
         }
-
-        // TODO
-        /*
-        fun deleteAllCardsLocally(context: Context) {
-            cardDatabase = initializeDatabase(context)
-            executor.execute {
-                cardDatabase!!.cardDao.nukeCardsTable()
-            }
-        }
-
-        fun deleteAllDecksLocally(context: Context) {
-            cardDatabase = initializeDatabase(context)
-            executor.execute {
-                cardDatabase!!.cardDao.nukeDecksTable()
-            }
-        }
-
-
-        fun generateTestDeck() {
-            if(cards.any { it.deckId == "test" } || decks.any { it.id == "test" }) {
-                cards.removeAll { it.deckId == "test" }
-                decks.removeAll { it.id  == "test" }
-            } else {
-                decks.add(Deck("Test deck", "test"))
-                cards.add(Card("To drink", "beber", deckId = "test"))
-                cards.add(Card("Table", "La mesa", deckId = "test"))
-                cards.add(Card("The lamp", "La lampara", deckId = "test"))
-                cards.add(Card("To eat", "Comer", deckId = "test"))
-                cards.add(Card("To read", "leer", deckId = "test"))
-            }
-        }
-
-         */
     }
 }

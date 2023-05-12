@@ -1,5 +1,6 @@
 package es.uam.eps.dadm.cards.viewModel
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -10,6 +11,7 @@ import com.google.firebase.ktx.Firebase
 import es.uam.eps.dadm.cards.ui.activity.SettingsActivity
 import es.uam.eps.dadm.cards.state.AuthenticationState
 
+@SuppressLint("StaticFieldLeak")
 class SignUpViewModel(application: Application) : AndroidViewModel(application) {
 
     private val context = getApplication<Application>().applicationContext

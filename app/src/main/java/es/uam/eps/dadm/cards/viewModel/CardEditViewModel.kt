@@ -1,5 +1,6 @@
 package es.uam.eps.dadm.cards.viewModel
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -9,6 +10,7 @@ import es.uam.eps.dadm.cards.ui.fragment.CardsApplication
 import es.uam.eps.dadm.cards.model.Card
 import timber.log.Timber
 
+@SuppressLint("StaticFieldLeak")
 class CardEditViewModel(application: Application): AndroidViewModel(application) {
 
     private val context = getApplication<Application>().applicationContext

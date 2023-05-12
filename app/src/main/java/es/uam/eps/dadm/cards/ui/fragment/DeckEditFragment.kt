@@ -11,10 +11,7 @@ import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import es.uam.eps.dadm.cards.ui.fragment.DeckEditFragmentArgs
-import es.uam.eps.dadm.cards.ui.fragment.DeckEditFragmentDirections
 import es.uam.eps.dadm.cards.R
-import es.uam.eps.dadm.cards.model.Card
 import es.uam.eps.dadm.cards.model.Deck
 import es.uam.eps.dadm.cards.databinding.FragmentDeckEditBinding
 import es.uam.eps.dadm.cards.model.DeckWithCards
@@ -61,7 +58,7 @@ class DeckEditFragment : Fragment() {
                     "",
                     deckEditViewModel.getUserId()!!
                 ),
-                mutableListOf<Card>()
+                mutableListOf()
             )
             binding.deck = deckWithCards.deck
             name = deckWithCards.deck.name

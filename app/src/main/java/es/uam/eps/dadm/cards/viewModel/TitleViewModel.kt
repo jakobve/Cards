@@ -1,5 +1,6 @@
 package es.uam.eps.dadm.cards.viewModel
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.google.firebase.database.DataSnapshot
@@ -11,6 +12,8 @@ import es.uam.eps.dadm.cards.ui.activity.SettingsActivity
 import es.uam.eps.dadm.cards.model.Card
 import es.uam.eps.dadm.cards.model.Deck
 import timber.log.Timber
+
+@SuppressLint("StaticFieldLeak")
 class TitleViewModel(application: Application): AndroidViewModel(application) {
 
     private val context = getApplication<Application>().applicationContext

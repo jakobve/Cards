@@ -22,7 +22,7 @@ class TutorialPagerAdapter (fragmentManager: FragmentManager) : FragmentPagerAda
         return fragments.size
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return titles[position]
     }
 }

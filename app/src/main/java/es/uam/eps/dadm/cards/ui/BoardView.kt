@@ -1,5 +1,6 @@
 package es.uam.eps.dadm.cards.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -16,7 +17,7 @@ class BoardView(
     private val linePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.BLACK
         strokeWidth = 2f
-        setStyle(Paint.Style.STROKE)
+        style = Paint.Style.STROKE
     }
     private var path = Path()
 
@@ -25,6 +26,7 @@ class BoardView(
         canvas.drawPath(path, linePaint)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val pointX = event.x
         val pointY = event.y

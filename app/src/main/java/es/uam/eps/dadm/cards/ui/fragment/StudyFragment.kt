@@ -32,7 +32,7 @@ class StudyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        Timber.i("Create studyfragment")
+        Timber.i("Create study fragment")
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_study,
@@ -69,7 +69,7 @@ class StudyFragment : Fragment() {
             }
 
             viewModel.nDueCards.observe(viewLifecycleOwner) {
-                binding.dueCardsInfoChip.text = "$it cards remaining"
+                binding.dueCardsInfoChip.text = String.format(getString(R.string.due_cards_info_text_view_message), it)
             }
         }
 

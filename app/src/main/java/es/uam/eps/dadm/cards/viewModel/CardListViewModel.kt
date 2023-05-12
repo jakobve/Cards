@@ -1,5 +1,6 @@
 package es.uam.eps.dadm.cards.viewModel
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.*
 import com.google.firebase.auth.FirebaseAuth
@@ -10,6 +11,7 @@ import timber.log.Timber
 
 class CardListViewModel(application: Application): AndroidViewModel(application) {
 
+    @SuppressLint("StaticFieldLeak")
     private val context = getApplication<Application>().applicationContext
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 

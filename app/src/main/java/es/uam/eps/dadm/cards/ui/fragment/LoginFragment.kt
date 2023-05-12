@@ -9,7 +9,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import es.uam.eps.dadm.cards.ui.fragment.LoginFragmentDirections
 import es.uam.eps.dadm.cards.databinding.FragmentLoginBinding
 import es.uam.eps.dadm.cards.state.AuthenticationState
 import es.uam.eps.dadm.cards.viewModel.LoginViewModel

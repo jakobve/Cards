@@ -49,18 +49,18 @@ class SettingsActivity : AppCompatActivity() {
 
 
     companion object {
-        const val MAX_NUMBER_CARDS_KEY = "max_number_cards"
-        const val MAX_NUMBER_CARDS_DEFAULT = "20"
-        const val REPETITIONS_KEY = "repetitions"
-        const val REPETITIONS_VALUE = "0"
-        const val LAST_STUDY_SESSION_KEY = "last_study_session"
-        const val LAST_STUDY_SESSION_VALUE = "2023-05-09T09:47:08.644"
-        const val BOARD_KEY = "board"
-        const val BOARD_DEFAULT = false
-        const val LOGGED_IN_KEY = "logged_in_key"
-        const val LOGGED_IN_DEFAULT = false
-        const val USER_ID = "user_id"
-        const val USER_ID_DEFAULT = ""
+        private const val MAX_NUMBER_CARDS_KEY = "max_number_cards"
+        private const val MAX_NUMBER_CARDS_DEFAULT = "20"
+        private const val REPETITIONS_KEY = "repetitions"
+        private const val REPETITIONS_VALUE = "0"
+        private const val LAST_STUDY_SESSION_KEY = "last_study_session"
+        private const val LAST_STUDY_SESSION_VALUE = "2023-05-09T09:47:08.644"
+        private const val BOARD_KEY = "board"
+        private const val BOARD_DEFAULT = false
+        private const val LOGGED_IN_KEY = "logged_in_key"
+        private const val LOGGED_IN_DEFAULT = false
+        private const val USER_ID = "user_id"
+        private const val USER_ID_DEFAULT = ""
 
         fun getRepetitions(context: Context): Int {
             return PreferenceManager

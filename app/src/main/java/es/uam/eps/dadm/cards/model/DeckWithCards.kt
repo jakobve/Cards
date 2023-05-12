@@ -2,8 +2,6 @@ package es.uam.eps.dadm.cards.model
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import es.uam.eps.dadm.cards.model.Card
-import es.uam.eps.dadm.cards.model.Deck
 
 data class DeckWithCards (
     @Embedded
@@ -11,4 +9,4 @@ data class DeckWithCards (
     @Relation (
         parentColumn = "deckId",
         entityColumn = "deckId")
-    val cards: List<Card>) {}
+    val cards: List<Card>)

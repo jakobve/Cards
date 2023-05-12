@@ -1,5 +1,6 @@
 package es.uam.eps.dadm.cards.viewModel
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.*
 import es.uam.eps.dadm.cards.ui.fragment.CardsApplication
@@ -9,6 +10,7 @@ import timber.log.Timber
 import java.time.LocalDateTime
 import java.util.concurrent.Executors
 
+@SuppressLint("StaticFieldLeak")
 class StudyViewModel(application: Application): AndroidViewModel(application) {
 
     private val executor = Executors.newSingleThreadExecutor()
@@ -21,7 +23,7 @@ class StudyViewModel(application: Application): AndroidViewModel(application) {
 
 
     var cards: LiveData<List<Card>> = deckId.switchMap {
-        Timber.i("Switchmap")
+        Timber.i("Switch map")
         if(it != -1L) {
             Timber.i("Specific deck")
             CardsApplication.getCardsOfDeck(context, it)
@@ -50,7 +52,7 @@ class StudyViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    val nDueCards: LiveData<Int> = cards.map() {
+    val nDueCards: LiveData<Int> = cards.map {
         it.filter { card -> card.isDue((LocalDateTime.now())) }.size + 1
     }
 

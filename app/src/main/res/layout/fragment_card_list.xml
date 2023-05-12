@@ -21,7 +21,7 @@
                 <RadioButton android:id="@+id/radio_repetitions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/repetision_text_cards_list"/>
+                    android:text="@string/repetition_text_cards_list"/>
 
                 <RadioButton android:id="@+id/radio_easiness"
                     android:layout_width="wrap_content"
